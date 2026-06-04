@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>CSOC Oke Ayo Osu Model Parish | Attendance & Registration</title>
+    <title>CSOC Oke Ayo Osu Model Parish | Member Registration</title>
     <style>
         * {
             margin: 0;
@@ -108,15 +108,6 @@
             background: #0f2b4f;
             transform: scale(0.98);
         }
-        .btn-outline {
-            background: white;
-            color: #1e3c72;
-            border: 2px solid #1e3c72;
-        }
-        .btn-outline:hover {
-            background: #1e3c72;
-            color: white;
-        }
         .message {
             margin-top: 1rem;
             padding: 0.8rem;
@@ -135,16 +126,40 @@
             border-left: 5px solid #e74c3c;
         }
 
-        .admin-login-area, .admin-dashboard {
-            background: white;
-            border-radius: 28px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        /* HIDDEN ADMIN PANEL - Only appears with secret access */
+        .admin-panel-hidden {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
         }
-        .toggle-admin-btn {
-            background: #ffb347;
-            color: #2d2f36;
+        .admin-panel-visible {
+            display: block;
+        }
+        .admin-card {
+            background: white;
+            border-radius: 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .close-admin {
+            position: sticky;
+            top: 0;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            float: right;
             margin-bottom: 1rem;
-            font-weight: bold;
         }
         table {
             width: 100%;
@@ -169,50 +184,36 @@
             margin-bottom: 1rem;
             font-weight: 600;
         }
-        .logout-btn {
-            background: #cf5c3e;
-            padding: 6px 14px;
-            font-size: 0.8rem;
-            margin-left: 1rem;
-        }
-        .flex-between {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .hidden {
-            display: none;
-        }
-        .role-note {
-            font-size: 0.7rem;
-            background: #ecfdf5;
-            border-radius: 20px;
-            padding: 6px 12px;
-            display: inline-block;
-        }
-        @media (max-width: 640px) {
-            .card { padding: 1.2rem; }
-            .card-title { font-size: 1.3rem; }
-            th, td { font-size: 0.75rem; padding: 8px 4px; }
+        .login-box {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 32px;
         }
         footer {
             text-align: center;
-            margin-top: 3rem;
-            font-size: 0.75rem;
+            margin-top: 2rem;
+            font-size: 0.7rem;
             color: #5f6c84;
+        }
+        @media (max-width: 640px) {
+            .card { padding: 1.2rem; }
+            th, td { font-size: 0.7rem; padding: 6px 3px; }
         }
     </style>
 </head>
 <body>
+
 <div class="container">
     <div class="church-header">
         <h1>⛪ <span>Cherubim & Seraphim Church</span></h1>
         <h2 style="font-size:1.35rem; color:#d97706;">Oke Ayo Osu Model Parish</h2>
-        <p>Attendance & Member Registration • Sanctified Worship Center</p>
+        <p>Attendance & Member Registration</p>
     </div>
 
-    <div class="card" id="publicCard">
+    <!-- PUBLIC REGISTRATION FORM ONLY -->
+    <div class="card">
         <div class="card-title">📋 New Member / Attendance Register</div>
         <form id="attendanceForm">
             <div class="form-grid">
@@ -246,58 +247,51 @@
             </div>
         </form>
         <div id="publicMessage"></div>
-        <div class="role-note" style="margin-top: 16px;">🔒 Admin login below to view all registered members & attendance records.</div>
     </div>
+    <footer>Cherubim & Seraphim Church Oke Ayo Osu Model Parish — Member Registration</footer>
+</div>
 
-    <div style="margin: 1rem 0;">
-        <button id="toggleAdminBtn" class="toggle-admin-btn">🔐 Admin Login / Dashboard</button>
-    </div>
-
-    <div id="adminSection" class="admin-login-area" style="display: none;">
-        <div class="card" id="adminLoginCard">
-            <div class="card-title">🔑 Administrator Access</div>
-            <div class="form-grid" style="max-width: 400px;">
+<!-- HIDDEN ADMIN PANEL (Only you can access) -->
+<div id="adminPanel" class="admin-panel-hidden">
+    <div class="admin-card">
+        <button class="close-admin" id="closeAdminBtn">✖ Close Admin Panel</button>
+        <div style="clear:both"></div>
+        
+        <div id="adminLoginArea">
+            <div class="login-box">
+                <h2 style="color:#1e3c72; margin-bottom:1rem;">🔐 Admin Access</h2>
                 <div class="input-group">
-                    <label>Admin Username</label>
-                    <input type="text" id="adminUser" placeholder="admin" value="admin">
+                    <label>Username</label>
+                    <input type="text" id="adminUser" placeholder="admin">
                 </div>
                 <div class="input-group">
                     <label>Password</label>
-                    <input type="password" id="adminPass" placeholder="••••••">
+                    <input type="password" id="adminPass" placeholder="password">
                 </div>
-                <div>
-                    <button id="adminLoginBtn">🔓 Login to Backend</button>
-                </div>
+                <button id="adminLoginBtn">Login to View Records</button>
+                <div id="adminLoginMsg" style="margin-top:1rem;"></div>
             </div>
-            <div id="adminLoginMsg"></div>
-            <p style="font-size:12px; margin-top:12px;">Demo default: <strong>admin / csoc2025</strong></p>
         </div>
-
-        <div id="adminDashboard" style="display: none;">
-            <div class="card">
-                <div class="flex-between">
-                    <div class="card-title">📊 Attendance Records · Members List</div>
-                    <button id="logoutAdminBtn" class="logout-btn">🚪 Logout</button>
-                </div>
-                <div class="admin-stats" id="statsInfo">Loading member stats...</div>
-                <div style="overflow-x: auto;">
-                    <table id="membersTable">
-                        <thead>
-                            <tr><th>#</th><th>First Name</th><th>Second Name</th><th>Surname</th><th>Sex</th><th>Phone Number</th><th>Registered On</th></tr>
-                        </thead>
-                        <tbody id="membersTableBody">
-                            <tr><td colspan="7" style="text-align:center;">No members yet. Register first from the form.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div style="margin-top: 1rem; font-size:0.8rem; background:#eef2ff; padding:8px 14px; border-radius:40px;">
-                    💡 Tip: each registration automatically stores attendance timestamp. All data saved in your browser (localStorage). Use "Export Data" to backup.
-                    <button id="exportDataBtn" style="background: #2c7a4d; margin-left: 8px; padding: 4px 12px; font-size: 0.7rem;">📎 Export CSV</button>
-                </div>
+        
+        <div id="adminDashboardArea" style="display:none;">
+            <div class="flex-between">
+                <h2 class="card-title" style="border-left:6px solid #f5b042;">📊 Attendance Records</h2>
+                <button id="exportDataBtn" style="background:#2c7a4d;">📎 Export CSV</button>
             </div>
+            <div class="admin-stats" id="statsInfo">Loading...</div>
+            <div style="overflow-x: auto;">
+                <table id="membersTable">
+                    <thead>
+                        <tr><th>#</th><th>First Name</th><th>Second Name</th><th>Surname</th><th>Sex</th><th>Phone Number</th><th>Registered On</th></tr>
+                    </thead>
+                    <tbody id="membersTableBody">
+                        <tr><td colspan="7" style="text-align:center;">No members yet.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <button id="logoutAdminBtn" style="background:#cf5c3e; margin-top:1rem;">🚪 Logout</button>
         </div>
     </div>
-    <footer>Cherubim & Seraphim Church Oke Ayo Osu Model Parish — attendance & member management system. All entries saved locally.</footer>
 </div>
 
 <script>
@@ -340,8 +334,8 @@
         if (!tbody) return;
 
         if (members.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">📭 No registered members yet. Use registration form above.</td></tr>';
-            if(statsDiv) statsDiv.innerText = "📌 Total Attendance Records: 0 | No entries found.";
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">📭 No registered members yet.</td></tr>';
+            if(statsDiv) statsDiv.innerText = "📌 Total Records: 0";
             return;
         }
 
@@ -361,7 +355,7 @@
         if(statsDiv) {
             let maleCount = members.filter(m => m.sex === 'Male').length;
             let femaleCount = members.filter(m => m.sex === 'Female').length;
-            statsDiv.innerHTML = `📈 Total registered attendees: <strong>${members.length}</strong> &nbsp;| 👨 Male: ${maleCount} &nbsp;| 👩 Female: ${femaleCount} &nbsp;| 🕒 Last entry: ${members[0]?.registeredAt || 'N/A'}`;
+            statsDiv.innerHTML = `📈 Total registered: <strong>${members.length}</strong> &nbsp;| 👨 Male: ${maleCount} &nbsp;| 👩 Female: ${femaleCount}`;
         }
     }
 
@@ -378,8 +372,6 @@
     function validateForm(first, second, surname, sex, phone) {
         if(!first || !second || !surname || !sex || !phone) return "All fields are required.";
         if(phone.length < 6) return "Phone number seems too short.";
-        const phoneRegex = /^[+]?[\d\s\-()]{7,20}$/;
-        if(!phoneRegex.test(phone)) return "Please enter a valid phone number.";
         return null;
     }
 
@@ -414,27 +406,25 @@
         }
 
         addMember({ firstName, secondName, surname, sex, phone });
-        showPublicMessage(`✅ Welcome ${firstName} ${surname}! Attendance recorded successfully. God bless you.`);
+        showPublicMessage(`✅ Welcome ${firstName} ${surname}! Attendance recorded. God bless you.`);
         resetForm();
-        const dashboard = document.getElementById("adminDashboard");
-        if(dashboard && dashboard.style.display !== "none") {
-            renderAdminTable();
-        }
     }
 
     let adminLoggedIn = false;
 
-    function updateAdminUI() {
-        const loginCard = document.getElementById("adminLoginCard");
-        const dashboardDiv = document.getElementById("adminDashboard");
-        if(adminLoggedIn) {
-            if(loginCard) loginCard.style.display = "none";
-            if(dashboardDiv) dashboardDiv.style.display = "block";
-            renderAdminTable();
-        } else {
-            if(loginCard) loginCard.style.display = "block";
-            if(dashboardDiv) dashboardDiv.style.display = "none";
-        }
+    function showAdminPanel() {
+        document.getElementById("adminPanel").classList.add("admin-panel-visible");
+        document.getElementById("adminPanel").classList.remove("admin-panel-hidden");
+    }
+
+    function hideAdminPanel() {
+        document.getElementById("adminPanel").classList.add("admin-panel-hidden");
+        document.getElementById("adminPanel").classList.remove("admin-panel-visible");
+        adminLoggedIn = false;
+        document.getElementById("adminLoginArea").style.display = "block";
+        document.getElementById("adminDashboardArea").style.display = "none";
+        document.getElementById("adminUser").value = "";
+        document.getElementById("adminPass").value = "";
     }
 
     function attemptLogin() {
@@ -443,41 +433,22 @@
         const loginMsgDiv = document.getElementById("adminLoginMsg");
         if(username === ADMIN_CRED.username && password === ADMIN_CRED.password) {
             adminLoggedIn = true;
-            updateAdminUI();
-            if(loginMsgDiv) loginMsgDiv.innerHTML = `<div class="message success-msg">✅ Login successful. Welcome Pastor/Admin.</div>`;
-            setTimeout(() => { if(loginMsgDiv) loginMsgDiv.innerHTML = ""; }, 2000);
+            document.getElementById("adminLoginArea").style.display = "none";
+            document.getElementById("adminDashboardArea").style.display = "block";
+            renderAdminTable();
+            if(loginMsgDiv) loginMsgDiv.innerHTML = "";
         } else {
-            if(loginMsgDiv) loginMsgDiv.innerHTML = `<div class="message error-msg">❌ Invalid credentials. Use admin / csoc2025</div>`;
+            if(loginMsgDiv) loginMsgDiv.innerHTML = `<div class="message error-msg">❌ Invalid credentials</div>`;
         }
     }
 
     function logoutAdmin() {
         adminLoggedIn = false;
-        updateAdminUI();
-        const loginMsgDiv = document.getElementById("adminLoginMsg");
-        if(loginMsgDiv) loginMsgDiv.innerHTML = "";
-        const passInput = document.getElementById("adminPass");
-        if(passInput) passInput.value = "";
-    }
-
-    const adminSection = document.getElementById("adminSection");
-    let adminPanelVisible = false;
-    function toggleAdminSection() {
-        if(adminPanelVisible) {
-            adminSection.style.display = "none";
-            adminPanelVisible = false;
-        } else {
-            adminSection.style.display = "block";
-            adminPanelVisible = true;
-            if(adminLoggedIn) {
-                updateAdminUI();
-            } else {
-                const loginCard = document.getElementById("adminLoginCard");
-                const dashboardDiv = document.getElementById("adminDashboard");
-                if(loginCard) loginCard.style.display = "block";
-                if(dashboardDiv) dashboardDiv.style.display = "none";
-            }
-        }
+        document.getElementById("adminLoginArea").style.display = "block";
+        document.getElementById("adminDashboardArea").style.display = "none";
+        document.getElementById("adminUser").value = "";
+        document.getElementById("adminPass").value = "";
+        document.getElementById("adminLoginMsg").innerHTML = "";
     }
 
     function exportToCSV() {
@@ -503,12 +474,30 @@
         URL.revokeObjectURL(url);
     }
 
+    // SECRET ACCESS METHODS (Only you know)
+    // Method 1: Press 'A' + 'D' + 'M' + 'I' + 'N' keys in sequence
+    let secretKeySequence = [];
+    const secretCode = ['a', 'd', 'm', 'i', 'n'];
+    
+    document.addEventListener('keydown', (e) => {
+        secretKeySequence.push(e.key.toLowerCase());
+        if(secretKeySequence.length > secretCode.length) {
+            secretKeySequence.shift();
+        }
+        if(JSON.stringify(secretKeySequence) === JSON.stringify(secretCode)) {
+            showAdminPanel();
+            secretKeySequence = [];
+        }
+    });
+
+    // Method 2: Add ?admin to URL (e.g., yoursite.com/?admin)
+    if(window.location.search.includes('admin')) {
+        showAdminPanel();
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("attendanceForm");
         if(form) form.addEventListener("submit", handleRegistration);
-
-        const toggleBtn = document.getElementById("toggleAdminBtn");
-        if(toggleBtn) toggleBtn.addEventListener("click", toggleAdminSection);
 
         const loginBtn = document.getElementById("adminLoginBtn");
         if(loginBtn) loginBtn.addEventListener("click", attemptLogin);
@@ -516,12 +505,11 @@
         const logoutBtn = document.getElementById("logoutAdminBtn");
         if(logoutBtn) logoutBtn.addEventListener("click", logoutAdmin);
 
+        const closeBtn = document.getElementById("closeAdminBtn");
+        if(closeBtn) closeBtn.addEventListener("click", hideAdminPanel);
+
         const exportBtn = document.getElementById("exportDataBtn");
         if(exportBtn) exportBtn.addEventListener("click", exportToCSV);
-
-        adminSection.style.display = "none";
-        adminPanelVisible = false;
-        adminLoggedIn = false;
     });
 </script>
 </body>
