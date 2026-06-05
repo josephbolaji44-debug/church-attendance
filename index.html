@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>CSOC Oke Ayo Osu Model Parish | Official Registration</title>
-    <meta name="description" content="Official attendance registration for Cherubim and Seraphim Church Oke Ayo Osu Model Parish. Register your attendance online.">
+    <title>CSOC Oke Ayo Osu Model Parish | Official Website</title>
+    <meta name="description" content="Official website of The Sacred Cherubim & Seraphim Church of Nigeria, Oke Ayo Osu Model Parish. Register your attendance online.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -42,8 +42,8 @@
         
         .main-header::before {
             content: "✝";
-            font-size: 80px;
-            opacity: 0.1;
+            font-size: 100px;
+            opacity: 0.08;
             position: absolute;
             bottom: 10px;
             right: 20px;
@@ -64,8 +64,9 @@
         
         .main-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            letter-spacing: 2px;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            line-height: 1.4;
         }
         
         .main-header h2 {
@@ -73,6 +74,15 @@
             font-weight: 400;
             opacity: 0.9;
             margin-top: 8px;
+        }
+        
+        .main-header .contact-header {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            background: rgba(0,0,0,0.2);
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 40px;
         }
         
         /* Navigation */
@@ -97,6 +107,7 @@
             color: #2d5a3f;
             font-weight: 500;
             transition: 0.3s;
+            cursor: pointer;
         }
         
         .nav-links a:hover {
@@ -118,16 +129,16 @@
         
         .welcome-section h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #1a3c2c;
         }
         
         .service-times {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
         
         .service-card {
@@ -135,10 +146,13 @@
             padding: 1rem 1.5rem;
             border-radius: 50px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            min-width: 180px;
         }
         
         .service-card strong {
             color: #8B4513;
+            display: block;
+            margin-bottom: 5px;
         }
         
         /* Two Column Layout */
@@ -279,37 +293,81 @@
             border-left: 4px solid #2196f3;
         }
         
-        /* Recent Activity */
-        .recent-section {
-            margin-top: 2rem;
+        /* About Us Section */
+        .about-section {
+            margin-top: 3rem;
             background: white;
             border-radius: 24px;
-            padding: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
         
-        .recent-section h4 {
+        .about-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
             color: #1a3c2c;
+            margin-bottom: 1rem;
+            border-left: 4px solid #FFD700;
+            padding-left: 1rem;
+        }
+        
+        .about-section p {
+            line-height: 1.8;
+            color: #444;
             margin-bottom: 1rem;
         }
         
-        .stats-grid {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+        .about-quote {
+            font-style: italic;
+            color: #8B4513;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #FFD700;
         }
         
-        .stat-box {
-            background: #f5f0e8;
-            padding: 1rem;
-            border-radius: 16px;
-            flex: 1;
+        /* Contact Section */
+        .contact-section {
+            margin-top: 2rem;
+            background: #1a3c2c;
+            border-radius: 24px;
+            padding: 2rem;
+            color: white;
             text-align: center;
         }
         
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #8B4513;
+        .contact-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+        }
+        
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .contact-item a:hover {
+            color: #FFD700;
         }
         
         /* Footer */
@@ -321,61 +379,58 @@
             margin-top: 2rem;
         }
         
-        .social-icons {
-            margin-bottom: 1rem;
-        }
-        
-        .social-icons span {
-            font-size: 1.5rem;
-            margin: 0 0.5rem;
-            cursor: pointer;
-        }
-        
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .form-card, .info-card {
+        .form-card, .info-card, .about-section, .contact-section {
             animation: fadeIn 0.6s ease-out;
+        }
+        
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
     <div class="top-banner">
-        📍 Oke Ayo Osu, Nigeria | ✝️ Join Us Every Sunday
+        📍 Oke Ayo Osu, Osun State, Nigeria | ✝️ The House of Prayer for All Nations
     </div>
     
     <div class="main-header">
         <div class="logo">⛪</div>
-        <h1>CHERUBIM & SERAPHIM CHURCH</h1>
-        <h2>Oke Ayo Osu Model Parish</h2>
-        <p style="margin-top: 1rem; opacity: 0.8;">"The House of Prayer for All Nations"</p>
+        <h1>THE SACRED CHERUBIM & SERAPHIM CHURCH OF NIGERIA</h1>
+        <h2>ARAROMI OKE-AYO MODEL PARISH HEADQUARTERS,<br>OKE-AYO DCC, OSU, OSUN STATE.</h2>
+        <div class="contact-header">
+            📞 08162632204 | 07035545877
+        </div>
     </div>
     
     <div class="nav-bar">
         <div class="nav-links">
-            <a href="#">🏠 Home</a>
-            <a href="#">📖 About Us</a>
-            <a href="#">📅 Events</a>
-            <a href="#">📞 Contact</a>
-            <a href="#">📋 Register Attendance</a>
+            <a href="#home">🏠 Home</a>
+            <a href="#about">📖 About Us</a>
+            <a href="#services">📅 Service Times</a>
+            <a href="#register">📋 Register Attendance</a>
+            <a href="#contact">📞 Contact</a>
         </div>
     </div>
     
-    <div class="container">
+    <div class="container" id="home">
         <div class="welcome-section">
             <h3>Welcome to Oke Ayo Osu Parish</h3>
-            <p style="margin-top: 0.5rem; color: #666;">A place of worship, healing, and spiritual growth</p>
-            <div class="service-times">
-                <div class="service-card"><strong>Sunday Service</strong><br>9:00 AM - 12:00 PM</div>
-                <div class="service-card"><strong>Bible Study</strong><br>Wednesday 5:00 PM</div>
-                <div class="service-card"><strong>Prayer Meeting</strong><br>Friday 6:00 AM</div>
+            <p style="margin-top: 0.5rem; color: #666;">A place of worship, prayer, holiness, and divine encounter</p>
+            <div class="service-times" id="services">
+                <div class="service-card"><strong>🕊️ Sunday Service</strong>9:00 AM - 2:00 PM</div>
+                <div class="service-card"><strong>📖 Bible Study</strong>Wednesday 5:00 PM</div>
+                <div class="service-card"><strong>🙏 Prayer Meeting/Night Vigil</strong>Friday 10:00 PM</div>
             </div>
         </div>
         
-        <div class="two-columns">
+        <div class="two-columns" id="register">
             <!-- Registration Form -->
             <div class="form-card">
                 <h3 class="form-title">📋 Register Your Attendance</h3>
@@ -427,34 +482,43 @@
             </div>
         </div>
         
-        <!-- Church Stats Section -->
-        <div class="recent-section" id="statsSection" style="display: none;">
-            <h4>📊 Church Attendance Overview</h4>
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <div class="stat-number" id="totalCount">0</div>
-                    <div>Total Members</div>
+        <!-- About Us Section -->
+        <div class="about-section" id="about">
+            <h4>📖 About Us</h4>
+            <p>Welcome to The Sacred Cherubim & Seraphim Church of Nigeria, Oke Ayo Osu Model Parish, a place of worship, prayer, holiness, and divine encounter. We are a Christ-centered church committed to proclaiming the Gospel of Jesus Christ, nurturing spiritual growth, and leading souls into a deeper relationship with God.</p>
+            <p>Guided by the power of the Holy Spirit and the teachings of the Holy Bible, we uphold the values of faith, righteousness, love, and service. Through fervent prayers, inspiring worship, biblical teachings, and community outreach, we strive to bring hope, healing, and transformation to individuals, families, and society.</p>
+            <p>Our mission is to raise disciples of Christ, win souls for God's Kingdom, and create an atmosphere where everyone can experience God's presence and power. We welcome all people regardless of background to join us in worship as one family united in faith and love.</p>
+            <div class="about-quote">
+                "A place where prayers are answered, lives are transformed, and God is glorified."
+            </div>
+        </div>
+        
+        <!-- Contact Section -->
+        <div class="contact-section" id="contact">
+            <h4>📞 Contact Us</h4>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <a href="mailto:csokeayomodelparishosuosunstat@gmail.com">csokeayomodelparishosuosunstat@gmail.com</a>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number" id="maleCount">0</div>
-                    <div>👨 Male</div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <a href="tel:08033621563">08033621563</a>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number" id="femaleCount">0</div>
-                    <div>👩 Female</div>
+                <div class="contact-item">
+                    <span>🏠</span>
+                    <span>Oke Ayo Osu, Osun State, Nigeria</span>
                 </div>
+            </div>
+            <div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8;">
+                <p>📞 Church Headquarters: 08162632204, 07035545877</p>
             </div>
         </div>
     </div>
     
     <div class="main-footer">
-        <div class="social-icons">
-            <span>📧</span>
-            <span>📱</span>
-            <span>🐦</span>
-            <span>📘</span>
-        </div>
-        <p>Cherubim & Seraphim Church Oke Ayo Osu Model Parish</p>
+        <p>THE SACRED CHERUBIM & SERAPHIM CHURCH OF NIGERIA</p>
+        <p>Araromi Oke-Ayo Model Parish Headquarters, Oke-Ayo DCC, Osu, Osun State.</p>
         <p style="font-size: 0.7rem; margin-top: 0.5rem;">© 2024 All Rights Reserved | Powered by Faith</p>
     </div>
 
