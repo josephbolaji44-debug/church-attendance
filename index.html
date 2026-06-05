@@ -31,22 +31,31 @@
             letter-spacing: 1px;
         }
         
-        /* Header */
+        /* Header with YOUR BACKGROUND IMAGE */
         .main-header {
-            background: linear-gradient(135deg, #1a3c2c 0%, #2d5a3f 100%);
+            background-image: url('church-bg.png');
+            background-size: cover;
+            background-position: center 30%;
             color: white;
             padding: 2rem 1rem;
             text-align: center;
             position: relative;
         }
         
+        /* Dark overlay on header only for text readability */
         .main-header::before {
-            content: "✝";
-            font-size: 100px;
-            opacity: 0.08;
+            content: "";
             position: absolute;
-            bottom: 10px;
-            right: 20px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+        }
+        
+        .main-header > * {
+            position: relative;
+            z-index: 2;
         }
         
         .logo {
@@ -67,19 +76,21 @@
             font-size: 1.4rem;
             letter-spacing: 1px;
             line-height: 1.4;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
         .main-header h2 {
             font-size: 1rem;
             font-weight: 400;
-            opacity: 0.9;
+            opacity: 0.95;
             margin-top: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         
         .main-header .contact-header {
             margin-top: 12px;
             font-size: 0.85rem;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.4);
             display: inline-block;
             padding: 6px 15px;
             border-radius: 40px;
