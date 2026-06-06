@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>CSOC Oke Ayo Osu | Church Management System</title>
-    <meta name="description" content="Complete church management system for CSOC Oke Ayo Osu Model Parish">
+    <title>CSOC Oke Ayo Osu | Member Portal</title>
+    <meta name="description" content="Member portal for CSOC Oke Ayo Osu Model Parish">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,8 +19,9 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f0f2f5;
+            background: linear-gradient(135deg, #f0f2f5 0%, #e8ecf1 100%);
             color: #2c2c2c;
+            min-height: 100vh;
         }
         
         .top-banner {
@@ -34,64 +35,137 @@
         .main-header {
             background: linear-gradient(135deg, #1a3c2c 0%, #2d5a3f 100%);
             color: white;
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem;
             text-align: center;
         }
         
         .logo {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             background: #FFD700;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 40px;
+            margin: 0 auto 0.8rem;
+            font-size: 35px;
         }
         
         .main-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
         
         .main-header h2 {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 400;
         }
         
-        .nav-bar {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.2rem;
-            padding: 0.8rem;
-            flex-wrap: wrap;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #2d5a3f;
-            font-weight: 500;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-        
-        .nav-links a:hover {
-            color: #8B4513;
-        }
-        
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 1.5rem;
+            padding: 2rem 1.5rem;
+        }
+        
+        /* Auth Forms */
+        .auth-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .auth-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .auth-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #1a3c2c;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8e8e8;
+            border-radius: 16px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #1a3c2c, #2d5a3f);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        
+        .btn-secondary {
+            background: #f5f0e8;
+            color: #1a3c2c;
+            border: none;
+            padding: 12px;
+            border-radius: 40px;
+            font-weight: 500;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        
+        .switch-auth {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .switch-auth a {
+            color: #8B4513;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        /* Dashboard (After Login) */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+        }
+        
+        .welcome-text h3 {
+            color: #1a3c2c;
+        }
+        
+        .logout-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
         }
         
         .stats-dashboard {
@@ -109,14 +183,8 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
         
-        .stat-card i {
-            font-size: 1.8rem;
-            color: #FFD700;
-            margin-bottom: 0.5rem;
-        }
-        
         .stat-number {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
             color: #1a3c2c;
         }
@@ -126,107 +194,82 @@
             color: #666;
         }
         
-        .two-columns {
+        /* Attendance Cards */
+        .attendance-cards {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
         
-        @media (max-width: 768px) {
-            .two-columns {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .form-card, .info-card, .events-card, .history-card, .about-card {
+        .attendance-card {
             background: white;
             border-radius: 24px;
             padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .attendance-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
         }
         
         .card-title {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
             color: #1a3c2c;
-            margin-bottom: 1.2rem;
-            border-left: 4px solid #FFD700;
-            padding-left: 0.8rem;
+            margin-bottom: 0.5rem;
         }
         
-        .form-group {
+        .card-date {
+            font-size: 0.8rem;
+            color: #8B4513;
             margin-bottom: 1rem;
         }
         
-        .form-group label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 0.3rem;
-            font-size: 0.85rem;
-        }
-        
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px 14px;
-            border: 2px solid #e8e8e8;
-            border-radius: 12px;
-            font-size: 0.9rem;
-        }
-        
-        .submit-btn {
-            background: linear-gradient(135deg, #1a3c2c, #2d5a3f);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 40px;
-            font-weight: 600;
-            width: 100%;
-            cursor: pointer;
-        }
-        
-        .qr-section {
-            text-align: center;
-            padding: 1rem;
-        }
-        
-        .qr-code {
-            background: white;
-            padding: 1rem;
-            border-radius: 20px;
+        .attendance-status {
             display: inline-block;
-            margin: 1rem 0;
-        }
-        
-        .event-item {
-            background: #f8f9fa;
-            padding: 0.8rem;
-            border-radius: 12px;
-            margin-bottom: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        .event-name {
-            font-weight: 600;
-            color: #1a3c2c;
-        }
-        
-        .event-date {
+            padding: 4px 12px;
+            border-radius: 20px;
             font-size: 0.7rem;
-            color: #8B4513;
+            margin-bottom: 1rem;
         }
         
-        .register-event-btn {
+        .status-present {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .status-absent {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .mark-btn {
             background: #FFD700;
             color: #1a3c2c;
             border: none;
-            padding: 4px 12px;
-            border-radius: 20px;
+            padding: 10px;
+            border-radius: 30px;
+            font-weight: 600;
+            width: 100%;
             cursor: pointer;
-            font-size: 0.7rem;
+        }
+        
+        .mark-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .history-section {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem;
         }
         
         .history-table {
@@ -251,33 +294,7 @@
             color: #1a3c2c;
         }
         
-        .chart-container {
-            margin-top: 1.5rem;
-            background: white;
-            border-radius: 24px;
-            padding: 1.5rem;
-        }
-        
-        canvas {
-            max-height: 300px;
-        }
-        
-        .about-text {
-            line-height: 1.8;
-            color: #444;
-        }
-        
-        .about-quote {
-            font-style: italic;
-            color: #8B4513;
-            font-weight: 500;
-            text-align: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 2px solid #FFD700;
-        }
-        
-        .main-footer {
+        .footer {
             background: #1a1a1a;
             color: #999;
             text-align: center;
@@ -303,87 +320,24 @@
             color: #c62828;
         }
         
-        .tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #e8e8e8;
-            flex-wrap: wrap;
+        .info {
+            background: #e3f2fd;
+            color: #1565c0;
         }
         
-        .tab {
-            padding: 0.8rem 1.2rem;
-            cursor: pointer;
-            font-weight: 500;
-            color: #666;
-        }
-        
-        .tab.active {
-            color: #1a3c2c;
-            border-bottom: 3px solid #FFD700;
-        }
-        
-        .tab-content {
+        .hidden {
             display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        /* Secret Admin Button - Hidden from users */
-        .secret-admin {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            width: 30px;
-            height: 30px;
-            opacity: 0;
-            cursor: pointer;
-            z-index: 999;
-        }
-        
-        /* Admin Panel - Hidden by default */
-        .admin-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-        
-        .admin-container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            background: white;
-            border-radius: 24px;
-            padding: 2rem;
-        }
-        
-        .close-admin {
-            float: right;
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
         }
         
         @media (max-width: 768px) {
-            .stat-number { font-size: 1.3rem; }
-            th, td { font-size: 0.7rem; padding: 0.5rem; }
-            .tab { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
+            .stat-number { font-size: 1.5rem; }
+            .attendance-cards { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="top-banner">
-        📍 Oke Ayo Osu, Osun State | ✝️ The House of Prayer | 🙏 Register Your Attendance
+        📍 Oke Ayo Osu, Osun State | ✝️ Member Portal | 🙏 Mark Your Attendance
     </div>
     
     <div class="main-header">
@@ -392,393 +346,439 @@
         <h2>ARAROMI OKE-AYO MODEL PARISH HEADQUARTERS, OKE-AYO DCC, OSU, OSUN STATE</h2>
     </div>
     
-    <div class="nav-bar">
-        <div class="nav-links">
-            <a onclick="showTab('register-tab')">📋 Register</a>
-            <a onclick="showTab('about-tab')">📖 About Us</a>
-            <a onclick="showTab('events-tab')">📅 Events</a>
-            <a onclick="showTab('history-tab')">📊 My History</a>
-            <a onclick="showTab('qr-tab')">📱 QR Code</a>
-        </div>
-    </div>
-    
     <div class="container">
-        <!-- Stats Dashboard -->
-        <div class="stats-dashboard" id="statsDashboard">
-            <div class="stat-card"><i class="fas fa-users"></i><div class="stat-number" id="totalMembers">0</div><div class="stat-label">Total Members</div></div>
-            <div class="stat-card"><i class="fas fa-chart-line"></i><div class="stat-number" id="weeklyCount">0</div><div class="stat-label">This Week</div></div>
-            <div class="stat-card"><i class="fas fa-star"></i><div class="stat-number" id="newVisitors">0</div><div class="stat-label">New Visitors</div></div>
-            <div class="stat-card"><i class="fas fa-calendar-week"></i><div class="stat-number" id="totalAttendance">0</div><div class="stat-label">Total Attendance</div></div>
+        <!-- Login/Register Section -->
+        <div id="authSection" class="auth-container">
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-card">
+                <h2 class="auth-title">🔐 Member Login</h2>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="loginPhone" placeholder="Enter your registered phone number">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password">
+                </div>
+                <button class="btn-primary" onclick="loginUser()">Login</button>
+                <div class="switch-auth">
+                    Don't have an account? <a onclick="showRegister()">Register here</a>
+                </div>
+                <div id="loginMessage"></div>
+            </div>
+            
+            <!-- Register Form -->
+            <div id="registerForm" class="auth-card hidden">
+                <h2 class="auth-title">📝 Create Account</h2>
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" id="regFirstName" placeholder="Enter first name">
+                </div>
+                <div class="form-group">
+                    <label>Second Name</label>
+                    <input type="text" id="regSecondName" placeholder="Enter second name">
+                </div>
+                <div class="form-group">
+                    <label>Surname</label>
+                    <input type="text" id="regSurname" placeholder="Enter surname">
+                </div>
+                <div class="form-group">
+                    <label>Sex</label>
+                    <select id="regSex">
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number (This will be your username)</label>
+                    <input type="tel" id="regPhone" placeholder="Enter phone number">
+                </div>
+                <div class="form-group">
+                    <label>Create Password</label>
+                    <input type="password" id="regPassword" placeholder="Create a password">
+                </div>
+                <button class="btn-primary" onclick="registerUser()">Create Account</button>
+                <div class="switch-auth">
+                    Already have an account? <a onclick="showLogin()">Login here</a>
+                </div>
+                <div id="registerMessage"></div>
+            </div>
         </div>
         
-        <!-- Register Tab -->
-        <div id="register-tab" class="tab-content active">
-            <div class="two-columns">
-                <div class="form-card">
-                    <h3 class="card-title">📋 Register Your Attendance</h3>
-                    <form id="registerForm">
-                        <div class="form-group"><label>First Name *</label><input type="text" id="firstName" required></div>
-                        <div class="form-group"><label>Second Name *</label><input type="text" id="secondName" required></div>
-                        <div class="form-group"><label>Surname *</label><input type="text" id="surname" required></div>
-                        <div class="form-group"><label>Sex *</label><select id="sex"><option value="">Select</option><option value="Male">Male</option><option value="Female">Female</option></select></div>
-                        <div class="form-group"><label>Phone Number *</label><input type="tel" id="phone" required></div>
-                        <div class="form-group"><label>Are you a first-time visitor?</label><select id="isNewVisitor"><option value="No">No, I'm a regular member</option><option value="Yes">Yes, this is my first time</option></select></div>
-                        <button type="submit" class="submit-btn">✍️ Submit Registration</button>
-                    </form>
-                    <div id="messageDiv"></div>
+        <!-- Dashboard (After Login) -->
+        <div id="dashboardSection" class="hidden">
+            <div class="dashboard-header">
+                <div class="welcome-text">
+                    <h3>Welcome, <span id="userName">Member</span>!</h3>
+                    <p>Mark your attendance for upcoming services</p>
+                </div>
+                <button class="logout-btn" onclick="logoutUser()">🚪 Logout</button>
+            </div>
+            
+            <!-- Stats -->
+            <div class="stats-dashboard">
+                <div class="stat-card"><div class="stat-number" id="totalAttendance">0</div><div class="stat-label">Total Attendance</div></div>
+                <div class="stat-card"><div class="stat-number" id="sundayCount">0</div><div class="stat-label">Sunday Services</div></div>
+                <div class="stat-card"><div class="stat-number" id="summitCount">0</div><div class="stat-label">Holy Ghost Summit</div></div>
+            </div>
+            
+            <!-- Attendance Cards -->
+            <div class="attendance-cards">
+                <!-- Sunday Service Card -->
+                <div class="attendance-card">
+                    <div class="card-icon">🕊️</div>
+                    <div class="card-title">Sunday Service</div>
+                    <div class="card-date">Every Sunday | 9:00 AM - 2:00 PM</div>
+                    <div id="sundayStatus" class="attendance-status status-absent">Not Marked Yet</div>
+                    <button id="sundayBtn" class="mark-btn" onclick="markAttendance('sunday')">✅ Mark Attendance for Sunday Service</button>
                 </div>
                 
-                <div class="info-card">
-                    <h3 class="card-title">✨ Welcome to CSOC Oke Ayo</h3>
-                    <p>We are glad to have you worship with us at CSOC Oke Ayo Osu Model Parish.</p>
-                    <ul style="margin-top: 1rem; list-style: none;">
-                        <li>✓ Keep track of your attendance history</li>
-                        <li>✓ Register for church events</li>
-                        <li>✓ Use QR code for quick check-in</li>
-                        <li>✓ View weekly attendance trends</li>
-                    </ul>
-                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
-                        <p style="font-size: 0.8rem;">📖 "Let us not give up meeting together" — Hebrews 10:25</p>
-                    </div>
+                <!-- Holy Ghost Summit 2026 Card -->
+                <div class="attendance-card">
+                    <div class="card-icon">🔥</div>
+                    <div class="card-title">Holy Ghost Summit 2026</div>
+                    <div class="card-date">Special Event | Coming Soon</div>
+                    <div id="summitStatus" class="attendance-status status-absent">Not Marked Yet</div>
+                    <button id="summitBtn" class="mark-btn" onclick="markAttendance('summit')">🔥 Mark Attendance for Holy Ghost Summit</button>
                 </div>
             </div>
-        </div>
-        
-        <!-- About Us Tab -->
-        <div id="about-tab" class="tab-content">
-            <div class="about-card">
-                <h3 class="card-title">📖 About Us</h3>
-                <div class="about-text">
-                    <p>Welcome to The Sacred Cherubim & Seraphim Church of Nigeria, Oke Ayo Osu Model Parish, a place of worship, prayer, holiness, and divine encounter. We are a Christ-centered church committed to proclaiming the Gospel of Jesus Christ, nurturing spiritual growth, and leading souls into a deeper relationship with God.</p>
-                    <p style="margin-top: 1rem;">Guided by the power of the Holy Spirit and the teachings of the Holy Bible, we uphold the values of faith, righteousness, love, and service. Through fervent prayers, inspiring worship, biblical teachings, and community outreach, we strive to bring hope, healing, and transformation to individuals, families, and society.</p>
-                    <p style="margin-top: 1rem;">Our mission is to raise disciples of Christ, win souls for God's Kingdom, and create an atmosphere where everyone can experience God's presence and power. We welcome all people regardless of background to join us in worship as one family united in faith and love.</p>
-                    <div class="about-quote">
-                        "A place where prayers are answered, lives are transformed, and God is glorified."
-                    </div>
-                </div>
-                <div style="margin-top: 1.5rem; padding: 1rem; background: #f5f0e8; border-radius: 16px;">
-                    <p><strong>📞 Contact Us:</strong> 08162632204, 07035545877</p>
-                    <p><strong>📧 Email:</strong> csokeayomodelparishosuosunstat@gmail.com</p>
-                    <p><strong>📍 Location:</strong> Oke Ayo Osu, Osun State, Nigeria</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Events Tab -->
-        <div id="events-tab" class="tab-content">
-            <div class="events-card">
-                <h3 class="card-title">📅 Upcoming Church Events</h3>
-                <div id="eventsList"></div>
-            </div>
-        </div>
-        
-        <!-- History Tab -->
-        <div id="history-tab" class="tab-content">
-            <div class="history-card">
+            
+            <!-- Attendance History -->
+            <div class="history-section">
                 <h3 class="card-title">📊 My Attendance History</h3>
-                <p>Enter your phone number to view your attendance records:</p>
-                <div style="display: flex; gap: 0.5rem; margin: 1rem 0; flex-wrap: wrap;">
-                    <input type="tel" id="searchPhone" placeholder="Enter your phone number" style="flex:1; padding: 10px; border-radius: 20px; border: 1px solid #ddd;">
-                    <button onclick="searchMyHistory()" style="background: #1a3c2c; color: white; border: none; padding: 8px 20px; border-radius: 20px;">Search</button>
-                </div>
-                <div id="personalHistory"></div>
-            </div>
-        </div>
-        
-        <!-- QR Tab -->
-        <div id="qr-tab" class="tab-content">
-            <div class="qr-section">
-                <h3 class="card-title">📱 Quick Check-in with QR Code</h3>
-                <p>Scan this QR code to quickly register your attendance</p>
-                <div class="qr-code" id="qrcode"></div>
-                <p style="margin-top: 1rem; font-size: 0.8rem; color: #666;">Save this QR code on your phone for faster check-in next time!</p>
-            </div>
-        </div>
-        
-        <!-- Weekly Trends Chart -->
-        <div class="chart-container">
-            <h3 class="card-title">📈 Weekly Attendance Trends</h3>
-            <canvas id="attendanceChart"></canvas>
-        </div>
-    </div>
-    
-    <!-- Secret Admin Access (Double-click bottom right corner) -->
-    <div class="secret-admin" id="secretAdminBtn" ondblclick="showAdminPanel()"></div>
-    
-    <!-- Admin Panel (Hidden) -->
-    <div id="adminPanel" class="admin-overlay">
-        <div class="admin-container">
-            <button class="close-admin" onclick="closeAdminPanel()">✖ Close</button>
-            <h2>🔐 Church Admin Dashboard</h2>
-            <div id="adminLoginArea">
-                <input type="password" id="adminPassword" placeholder="Enter Admin Password" style="padding: 10px; margin: 1rem 0; width: 100%; max-width: 300px;">
-                <button onclick="adminLogin()" style="background: #1a3c2c; color: white; border: none; padding: 10px 20px;">Login</button>
-                <div id="adminLoginMsg"></div>
-            </div>
-            <div id="adminDataArea" style="display: none;">
-                <div style="margin: 1rem 0;">
-                    <button onclick="exportAllData()" style="background: #27ae60; padding: 10px 20px;">📎 Export All Data (CSV)</button>
-                    <button onclick="clearAllData()" style="background: #e74c3c; padding: 10px 20px; margin-left: 0.5rem;">🗑️ Clear All Data</button>
-                </div>
-                <div style="overflow-x: auto;">
-                    <table id="adminTable">
-                        <thead><tr><th>#</th><th>Date</th><th>First Name</th><th>Second Name</th><th>Surname</th><th>Sex</th><th>Phone</th><th>New Visitor</th></tr></thead>
-                        <tbody id="adminTableBody"></tbody>
+                <div id="historyList" class="history-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Event</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody">
+                            <tr><td colspan="3" style="text-align:center;">No attendance records yet</td></tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
     
-    <div class="main-footer">
+    <div class="footer">
         <p>THE SACRED CHERUBIM & SERAPHIM CHURCH OF NIGERIA - Oke Ayo Osu Model Parish</p>
         <p>📞 08162632204, 07035545877 | 📧 csokeayomodelparishosuosunstat@gmail.com</p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <script>
-        // ============ DATA STORAGE ============
-        const STORAGE_KEY = "CSOC_PRO_DB";
-        const EVENTS_KEY = "CSOC_EVENTS";
-        const ADMIN_PASSWORD = "csoc2025";
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxvfr55dPPx3crp2be--_Tgirr3T9xqqiAUeWNIGsCpjJlqBcJFLErO5-HMgY2DQP6i/exec";
+        // Storage Keys
+        const USERS_KEY = "CSOC_USERS";
+        const ATTENDANCE_KEY = "CSOC_ATTENDANCE";
         
-        let attendanceChart = null;
+        let currentUser = null;
         
-        function loadData() {
-            const stored = localStorage.getItem(STORAGE_KEY);
+        // Event definitions
+        const EVENTS = [
+            { id: "sunday", name: "Sunday Service", color: "#2e7d32" },
+            { id: "summit", name: "Holy Ghost Summit 2026", color: "#e67e22" }
+        ];
+        
+        // Load users from storage
+        function loadUsers() {
+            const stored = localStorage.getItem(USERS_KEY);
             if (stored) return JSON.parse(stored);
             return [];
         }
         
-        function saveData(data) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            updateStats();
-            updateChart();
+        function saveUsers(users) {
+            localStorage.setItem(USERS_KEY, JSON.stringify(users));
         }
         
-        function loadEvents() {
-            const stored = localStorage.getItem(EVENTS_KEY);
+        // Load attendance records
+        function loadAttendance() {
+            const stored = localStorage.getItem(ATTENDANCE_KEY);
             if (stored) return JSON.parse(stored);
-            return [
-                { name: "Sunday Service", date: "Every Sunday (9:00 AM - 2:00 PM)", id: 1 },
-                { name: "Bible Study", date: "Every Wednesday (5:00 PM)", id: 2 },
-                { name: "Prayer Meeting/Night Vigil", date: "Every Friday (10:00 PM)", id: 3 }
-            ];
+            return [];
         }
         
-        function saveEvents(events) {
-            localStorage.setItem(EVENTS_KEY, JSON.stringify(events));
-            displayEvents();
+        function saveAttendance(attendance) {
+            localStorage.setItem(ATTENDANCE_KEY, JSON.stringify(attendance));
         }
         
-        function getWeekNumber(date) {
-            const start = new Date(date.getFullYear(), 0, 1);
-            const days = Math.floor((date - start) / (24 * 60 * 60 * 1000));
-            return Math.ceil((days + start.getDay() + 1) / 7);
-        }
-        
-        async function addRegistration(data) {
-            const members = loadData();
-            const newMember = {
+        // Register new user
+        function registerUser() {
+            const firstName = document.getElementById('regFirstName').value.trim();
+            const secondName = document.getElementById('regSecondName').value.trim();
+            const surname = document.getElementById('regSurname').value.trim();
+            const sex = document.getElementById('regSex').value;
+            const phone = document.getElementById('regPhone').value.trim();
+            const password = document.getElementById('regPassword').value;
+            
+            if (!firstName || !secondName || !surname || !sex || !phone || !password) {
+                showMessage('registerMessage', 'Please fill all fields', 'error');
+                return;
+            }
+            
+            if (password.length < 4) {
+                showMessage('registerMessage', 'Password must be at least 4 characters', 'error');
+                return;
+            }
+            
+            const users = loadUsers();
+            if (users.find(u => u.phone === phone)) {
+                showMessage('registerMessage', 'This phone number is already registered. Please login.', 'error');
+                return;
+            }
+            
+            const newUser = {
                 id: Date.now(),
-                ...data,
-                timestamp: new Date().toISOString(),
-                date: new Date().toLocaleDateString(),
-                week: getWeekNumber(new Date())
+                firstName,
+                secondName,
+                surname,
+                sex,
+                phone,
+                password,
+                registeredAt: new Date().toISOString()
             };
-            members.unshift(newMember);
-            saveData(members);
             
-            try {
-                await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
-            } catch(e) { console.log("Google sheets sync optional"); }
-            return newMember;
+            users.push(newUser);
+            saveUsers(users);
+            
+            showMessage('registerMessage', 'Account created successfully! Please login.', 'success');
+            
+            // Clear form and switch to login
+            document.getElementById('regFirstName').value = '';
+            document.getElementById('regSecondName').value = '';
+            document.getElementById('regSurname').value = '';
+            document.getElementById('regSex').value = '';
+            document.getElementById('regPhone').value = '';
+            document.getElementById('regPassword').value = '';
+            
+            showLogin();
         }
         
-        function updateStats() {
-            const members = loadData();
-            const total = members.length;
-            const thisWeek = getWeekNumber(new Date());
-            const weekly = members.filter(m => m.week === thisWeek).length;
-            const newVisitors = members.filter(m => m.isNewVisitor === 'Yes').length;
+        // Login user
+        function loginUser() {
+            const phone = document.getElementById('loginPhone').value.trim();
+            const password = document.getElementById('loginPassword').value;
             
-            document.getElementById('totalMembers').textContent = total;
-            document.getElementById('weeklyCount').textContent = weekly;
-            document.getElementById('newVisitors').textContent = newVisitors;
+            if (!phone || !password) {
+                showMessage('loginMessage', 'Please enter phone number and password', 'error');
+                return;
+            }
+            
+            const users = loadUsers();
+            const user = users.find(u => u.phone === phone && u.password === password);
+            
+            if (!user) {
+                showMessage('loginMessage', 'Invalid phone number or password', 'error');
+                return;
+            }
+            
+            currentUser = user;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            // Show dashboard
+            document.getElementById('authSection').classList.add('hidden');
+            document.getElementById('dashboardSection').classList.remove('hidden');
+            
+            // Update welcome message
+            document.getElementById('userName').textContent = `${user.firstName} ${user.surname}`;
+            
+            // Load user's attendance
+            loadUserAttendance();
+            
+            showMessage('loginMessage', '', '');
+            document.getElementById('loginPhone').value = '';
+            document.getElementById('loginPassword').value = '';
+        }
+        
+        // Load user's attendance records
+        function loadUserAttendance() {
+            if (!currentUser) return;
+            
+            const allAttendance = loadAttendance();
+            const userAttendance = allAttendance.filter(a => a.userId === currentUser.id);
+            
+            // Update stats
+            const total = userAttendance.length;
+            const sundayCount = userAttendance.filter(a => a.eventId === 'sunday').length;
+            const summitCount = userAttendance.filter(a => a.eventId === 'summit').length;
+            
             document.getElementById('totalAttendance').textContent = total;
-        }
-        
-        function updateChart() {
-            const members = loadData();
-            const last6Weeks = [];
-            const currentWeek = getWeekNumber(new Date());
-            for (let i = 5; i >= 0; i--) {
-                last6Weeks.push(currentWeek - i);
-            }
-            const weeklyCounts = last6Weeks.map(week => members.filter(m => m.week === week).length);
+            document.getElementById('sundayCount').textContent = sundayCount;
+            document.getElementById('summitCount').textContent = summitCount;
             
-            if (attendanceChart) {
-                attendanceChart.data.datasets[0].data = weeklyCounts;
-                attendanceChart.update();
+            // Check if already marked for this week's Sunday
+            const thisSunday = getThisSunday();
+            const markedSunday = userAttendance.find(a => a.eventId === 'sunday' && a.date === thisSunday);
+            const sundayBtn = document.getElementById('sundayBtn');
+            const sundayStatus = document.getElementById('sundayStatus');
+            
+            if (markedSunday) {
+                sundayBtn.disabled = true;
+                sundayBtn.textContent = '✅ Already Marked for This Week';
+                sundayStatus.textContent = 'Marked Present ✓';
+                sundayStatus.className = 'attendance-status status-present';
             } else {
-                const ctx = document.getElementById('attendanceChart').getContext('2d');
-                attendanceChart = new Chart(ctx, {
-                    type: 'line',
-                    data: { labels: last6Weeks.map(w => `Week ${w}`), datasets: [{ label: 'Attendance', data: weeklyCounts, borderColor: '#1a3c2c', backgroundColor: 'rgba(26,60,44,0.1)', tension: 0.3, fill: true }] },
-                    options: { responsive: true, maintainAspectRatio: true }
-                });
+                sundayBtn.disabled = false;
+                sundayBtn.textContent = '✅ Mark Attendance for Sunday Service';
+                sundayStatus.textContent = 'Not Marked Yet';
+                sundayStatus.className = 'attendance-status status-absent';
             }
-        }
-        
-        function displayEvents() {
-            const events = loadEvents();
-            const container = document.getElementById('eventsList');
-            if (!container) return;
-            container.innerHTML = events.map(event => `
-                <div class="event-item">
-                    <div><div class="event-name">${event.name}</div><div class="event-date">📅 ${event.date}</div></div>
-                    <button class="register-event-btn" onclick="registerForEvent('${event.name}')">Register</button>
-                </div>
-            `).join('');
-        }
-        
-        function registerForEvent(eventName) {
-            alert(`✅ You've registered for "${eventName}". God bless you!`);
-        }
-        
-        function searchMyHistory() {
-            const phone = document.getElementById('searchPhone').value.trim();
-            const members = loadData();
-            const personal = members.filter(m => m.phone === phone);
-            const container = document.getElementById('personalHistory');
-            if (personal.length === 0) {
-                container.innerHTML = "<p>📭 No records found for this phone number. Please register first.</p>";
-                return;
-            }
-            container.innerHTML = `
-                <div class="history-table">
-                    <table>
-                        <thead><tr><th>Date</th><th>First Name</th><th>Surname</th><th>Status</th></tr></thead>
-                        <tbody>
-                            ${personal.map(m => `<tr><td>${m.date}</td><td>${m.firstName}</td><td>${m.surname}</td><td>${m.isNewVisitor === 'Yes' ? '⭐ New Visitor' : 'Regular Member'}</td></tr>`).join('')}
-                        </tbody>
-                    </table>
-                </div>
-            `;
-        }
-        
-        // Tab switching
-        function showTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-        }
-        
-        // Admin Functions - SECRET ACCESS ONLY
-        function showAdminPanel() {
-            document.getElementById('adminPanel').style.display = 'block';
-        }
-        
-        function closeAdminPanel() {
-            document.getElementById('adminPanel').style.display = 'none';
-            document.getElementById('adminLoginArea').style.display = 'block';
-            document.getElementById('adminDataArea').style.display = 'none';
-            document.getElementById('adminPassword').value = '';
-        }
-        
-        function adminLogin() {
-            const pwd = document.getElementById('adminPassword').value;
-            if (pwd === ADMIN_PASSWORD) {
-                document.getElementById('adminLoginArea').style.display = 'none';
-                document.getElementById('adminDataArea').style.display = 'block';
-                loadAdminTable();
+            
+            // Check if marked for Summit
+            const markedSummit = userAttendance.find(a => a.eventId === 'summit');
+            const summitBtn = document.getElementById('summitBtn');
+            const summitStatus = document.getElementById('summitStatus');
+            
+            if (markedSummit) {
+                summitBtn.disabled = true;
+                summitBtn.textContent = '✅ Already Registered for Summit';
+                summitStatus.textContent = 'Registered ✓';
+                summitStatus.className = 'attendance-status status-present';
             } else {
-                document.getElementById('adminLoginMsg').innerHTML = '<div class="message error">❌ Wrong password! Access denied.</div>';
-                setTimeout(() => document.getElementById('adminLoginMsg').innerHTML = '', 2000);
+                summitBtn.disabled = false;
+                summitBtn.textContent = '🔥 Mark Attendance for Holy Ghost Summit';
+                summitStatus.textContent = 'Not Registered Yet';
+                summitStatus.className = 'attendance-status status-absent';
+            }
+            
+            // Update history table
+            const historyBody = document.getElementById('historyBody');
+            if (userAttendance.length === 0) {
+                historyBody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No attendance records yet</td></tr>';
+            } else {
+                historyBody.innerHTML = userAttendance.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp)).map(record => `
+                    <tr>
+                        <td>${record.date}</td>
+                        <td>${record.eventName}</td>
+                        <td><span class="status-present">✓ Present</span></td>
+                    </tr>
+                `).join('');
             }
         }
         
-        function loadAdminTable() {
-            const members = loadData();
-            const tbody = document.getElementById('adminTableBody');
-            if (members.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">No records found</td></tr>';
-                return;
+        // Get this Sunday's date (YYYY-MM-DD)
+        function getThisSunday() {
+            const today = new Date();
+            const day = today.getDay();
+            const diff = day === 0 ? 0 : 7 - day;
+            const sunday = new Date(today);
+            sunday.setDate(today.getDate() + diff);
+            return sunday.toISOString().split('T')[0];
+        }
+        
+        // Mark attendance for an event
+        function markAttendance(eventId) {
+            if (!currentUser) return;
+            
+            const event = EVENTS.find(e => e.id === eventId);
+            if (!event) return;
+            
+            const allAttendance = loadAttendance();
+            
+            // Check if already marked
+            if (eventId === 'sunday') {
+                const thisSunday = getThisSunday();
+                const alreadyMarked = allAttendance.find(a => a.userId === currentUser.id && a.eventId === 'sunday' && a.date === thisSunday);
+                if (alreadyMarked) {
+                    alert('You have already marked attendance for this Sunday service!');
+                    return;
+                }
+            } else if (eventId === 'summit') {
+                const alreadyMarked = allAttendance.find(a => a.userId === currentUser.id && a.eventId === 'summit');
+                if (alreadyMarked) {
+                    alert('You have already registered for Holy Ghost Summit 2026!');
+                    return;
+                }
             }
-            tbody.innerHTML = members.map((m, idx) => `
-                <tr>
-                    <td>${idx+1}</td>
-                    <td>${m.date || m.timestamp?.split('T')[0] || ''}</td>
-                    <td>${m.firstName || ''}</td>
-                    <td>${m.secondName || ''}</td>
-                    <td>${m.surname || ''}</td>
-                    <td>${m.sex || ''}</td>
-                    <td>${m.phone || ''}</td>
-                    <td>${m.isNewVisitor === 'Yes' ? 'Yes' : 'No'}</td>
-                </tr>
-            `).join('');
-        }
-        
-        function exportAllData() {
-            const members = loadData();
-            let csv = "Date,First Name,Second Name,Surname,Sex,Phone,New Visitor\n";
-            members.forEach(m => {
-                csv += `"${m.date || m.timestamp}","${m.firstName}","${m.secondName}","${m.surname}","${m.sex}","${m.phone}","${m.isNewVisitor || 'No'}"\n`;
-            });
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `csoc_attendance_${new Date().toISOString().split('T')[0]}.csv`;
-            link.click();
-        }
-        
-        function clearAllData() {
-            if (confirm("⚠️ WARNING: This will delete ALL attendance records. This cannot be undone. Are you sure?")) {
-                localStorage.removeItem(STORAGE_KEY);
-                updateStats();
-                updateChart();
-                loadAdminTable();
-                alert("✅ All data has been cleared!");
-            }
-        }
-        
-        // Form Submission
-        document.getElementById('registerForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = {
-                firstName: document.getElementById('firstName').value.trim(),
-                secondName: document.getElementById('secondName').value.trim(),
-                surname: document.getElementById('surname').value.trim(),
-                sex: document.getElementById('sex').value,
-                phone: document.getElementById('phone').value.trim(),
-                isNewVisitor: document.getElementById('isNewVisitor').value,
+            
+            const newAttendance = {
+                id: Date.now(),
+                userId: currentUser.id,
+                eventId: event.id,
+                eventName: event.name,
+                date: eventId === 'sunday' ? getThisSunday() : new Date().toISOString().split('T')[0],
                 timestamp: new Date().toISOString(),
-                registeredAt: new Date().toLocaleString()
+                userName: `${currentUser.firstName} ${currentUser.surname}`,
+                userPhone: currentUser.phone
             };
-            if (!formData.firstName || !formData.secondName || !formData.surname || !formData.sex || !formData.phone) {
-                document.getElementById('messageDiv').innerHTML = '<div class="message error">❌ Please fill all fields</div>';
-                return;
+            
+            allAttendance.push(newAttendance);
+            saveAttendance(allAttendance);
+            
+            // Also send to Google Sheets (optional)
+            try {
+                fetch("https://script.google.com/macros/s/AKfycbxvfr55dPPx3crp2be--_Tgirr3T9xqqiAUeWNIGsCpjJlqBcJFLErO5-HMgY2DQP6i/exec", {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify(newAttendance)
+                });
+            } catch(e) {}
+            
+            // Show success message
+            alert(`✅ Attendance marked for ${event.name}! Thank you.`);
+            
+            // Reload user attendance
+            loadUserAttendance();
+        }
+        
+        // Logout
+        function logoutUser() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            document.getElementById('authSection').classList.remove('hidden');
+            document.getElementById('dashboardSection').classList.add('hidden');
+            showLogin();
+        }
+        
+        // UI Helpers
+        function showRegister() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.remove('hidden');
+            document.getElementById('loginMessage').innerHTML = '';
+            document.getElementById('registerMessage').innerHTML = '';
+        }
+        
+        function showLogin() {
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('loginMessage').innerHTML = '';
+            document.getElementById('registerMessage').innerHTML = '';
+        }
+        
+        function showMessage(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="message ${type}">${message}</div>`;
+            setTimeout(() => {
+                if (element.innerHTML.includes(message)) {
+                    element.innerHTML = '';
+                }
+            }, 3000);
+        }
+        
+        // Check for existing session
+        function checkSession() {
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                const users = loadUsers();
+                const validUser = users.find(u => u.id === currentUser.id);
+                if (validUser) {
+                    currentUser = validUser;
+                    document.getElementById('authSection').classList.add('hidden');
+                    document.getElementById('dashboardSection').classList.remove('hidden');
+                    document.getElementById('userName').textContent = `${currentUser.firstName} ${currentUser.surname}`;
+                    loadUserAttendance();
+                } else {
+                    localStorage.removeItem('currentUser');
+                }
             }
-            await addRegistration(formData);
-            document.getElementById('messageDiv').innerHTML = '<div class="message success">✅ Registration Successful! Welcome to CSOC Oke Ayo Osu Parish. God bless you!</div>';
-            document.getElementById('registerForm').reset();
-            setTimeout(() => document.getElementById('messageDiv').innerHTML = '', 4000);
-        });
+        }
         
-        // Generate QR Code
-        new QRCode(document.getElementById("qrcode"), {
-            text: window.location.href,
-            width: 200,
-            height: 200
-        });
-        
-        // Initial Load
-        displayEvents();
-        updateStats();
-        updateChart();
-        
-        // Secret Admin Access Instructions (console only)
-        console.log("🔐 Admin Access: Double-click the bottom-right corner of the page to open admin panel. Password: csoc2025");
+        // Initialize
+        checkSession();
     </script>
 </body>
 </html>
