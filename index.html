@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -264,16 +265,22 @@
             margin: 0 auto;
         }
         
-        /* Two Column Layout */
-        .two-columns {
+        /* Three Column Layout for Registration + QR */
+        .three-columns {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 2rem;
             margin-top: 2rem;
         }
         
+        @media (max-width: 992px) {
+            .three-columns {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .two-columns {
+            .three-columns {
                 grid-template-columns: 1fr;
             }
         }
@@ -360,6 +367,53 @@
             position: absolute;
             left: 0;
             color: #FFD700;
+        }
+        
+        /* QR Code Card */
+        .qr-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .qr-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #1a3c2c;
+            margin-bottom: 1rem;
+        }
+        
+        .qr-code-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 1rem 0;
+            border: 2px solid #FFD700;
+        }
+        
+        .qr-instruction {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 1rem;
+        }
+        
+        .qr-instruction i {
+            color: #8B4513;
+            margin-right: 5px;
+        }
+        
+        .download-qr-btn {
+            background: #1a3c2c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 1rem;
+            font-size: 0.8rem;
         }
         
         /* About Section */
@@ -557,10 +611,10 @@
             </div>
         </div>
         
-        <!-- Registration Section -->
+        <!-- Registration Section with QR Code -->
         <div id="register">
             <h2 class="section-title">📋 Register Your Attendance</h2>
-            <div class="two-columns">
+            <div class="three-columns">
                 <div class="form-card">
                     <h3 class="form-title">Member Registration Form</h3>
                     <form id="registerForm">
@@ -614,6 +668,22 @@
                         <p style="font-size: 0.85rem;">📖 "Let us not give up meeting together, as some are in the habit of doing, but encouraging one another." — Hebrews 10:25</p>
                     </div>
                 </div>
+                
+                <!-- QR Code Card -->
+                <div class="qr-card">
+                    <h4><i class="fas fa-qrcode"></i> Scan to Register</h4>
+                    <div id="qrcode" class="qr-code-container"></div>
+                    <p class="qr-instruction">
+                        <i class="fas fa-mobile-alt"></i> Scan this QR code with your phone camera<br>
+                        to quickly access our registration page
+                    </p>
+                    <button class="download-qr-btn" onclick="downloadQRCode()">
+                        <i class="fas fa-download"></i> Download QR Code
+                    </button>
+                    <p style="margin-top: 1rem; font-size: 0.7rem; color: #999;">
+                        Share this QR code with friends and family
+                    </p>
+                </div>
             </div>
         </div>
         
@@ -658,6 +728,33 @@
     </div>
 
     <script>
+        // Generate QR Code for the website
+        const websiteUrl = window.location.href;
+        
+        // Create QR Code
+        const qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: websiteUrl,
+            width: 180,
+            height: 180,
+            colorDark: "#1a3c2c",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+        
+        // Function to download QR Code
+        function downloadQRCode() {
+            const qrElement = document.querySelector("#qrcode canvas");
+            if (qrElement) {
+                const link = document.createElement('a');
+                link.download = 'csoc_church_qrcode.png';
+                link.href = qrElement.toDataURL();
+                link.click();
+                alert('QR Code downloaded successfully! You can print it for church members to scan.');
+            } else {
+                alert('Please wait for QR code to generate');
+            }
+        }
+        
         // Mobile Menu Toggle
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
