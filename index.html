@@ -6,10 +6,9 @@
     <title>CSOC Oke Ayo Osu | Member Portal</title>
     <meta name="description" content="Member portal for CSOC Oke Ayo Osu Model Parish">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com crossorigin">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -67,7 +66,6 @@
             padding: 2rem 1.5rem;
         }
         
-        /* Auth Forms */
         .auth-container {
             max-width: 500px;
             margin: 0 auto;
@@ -119,18 +117,6 @@
             margin-top: 0.5rem;
         }
         
-        .btn-secondary {
-            background: #f5f0e8;
-            color: #1a3c2c;
-            border: none;
-            padding: 12px;
-            border-radius: 40px;
-            font-weight: 500;
-            width: 100%;
-            cursor: pointer;
-            margin-top: 0.5rem;
-        }
-        
         .switch-auth {
             text-align: center;
             margin-top: 1rem;
@@ -143,7 +129,6 @@
             text-decoration: none;
         }
         
-        /* Dashboard (After Login) */
         .dashboard-header {
             display: flex;
             justify-content: space-between;
@@ -194,7 +179,6 @@
             color: #666;
         }
         
-        /* Attendance Cards */
         .attendance-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -329,6 +313,74 @@
             display: none;
         }
         
+        /* Admin Panel */
+        .admin-fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1a3c2c;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 999;
+            font-size: 20px;
+        }
+        
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .admin-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+        }
+        
+        .close-admin {
+            float: right;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .admin-tab {
+            background: #f0f2f5;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        
+        .admin-tab.active {
+            background: #1a3c2c;
+            color: white;
+        }
+        
         @media (max-width: 768px) {
             .stat-number { font-size: 1.5rem; }
             .attendance-cards { grid-template-columns: 1fr; }
@@ -349,7 +401,6 @@
     <div class="container">
         <!-- Login/Register Section -->
         <div id="authSection" class="auth-container">
-            <!-- Login Form -->
             <div id="loginForm" class="auth-card">
                 <h2 class="auth-title">🔐 Member Login</h2>
                 <div class="form-group">
@@ -367,20 +418,19 @@
                 <div id="loginMessage"></div>
             </div>
             
-            <!-- Register Form -->
             <div id="registerForm" class="auth-card hidden">
                 <h2 class="auth-title">📝 Create Account</h2>
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" id="regFirstName" placeholder="Enter first name">
+                    <input type="text" id="regFirstName">
                 </div>
                 <div class="form-group">
                     <label>Second Name</label>
-                    <input type="text" id="regSecondName" placeholder="Enter second name">
+                    <input type="text" id="regSecondName">
                 </div>
                 <div class="form-group">
                     <label>Surname</label>
-                    <input type="text" id="regSurname" placeholder="Enter surname">
+                    <input type="text" id="regSurname">
                 </div>
                 <div class="form-group">
                     <label>Sex</label>
@@ -392,11 +442,11 @@
                 </div>
                 <div class="form-group">
                     <label>Phone Number (This will be your username)</label>
-                    <input type="tel" id="regPhone" placeholder="Enter phone number">
+                    <input type="tel" id="regPhone">
                 </div>
                 <div class="form-group">
                     <label>Create Password</label>
-                    <input type="password" id="regPassword" placeholder="Create a password">
+                    <input type="password" id="regPassword">
                 </div>
                 <button class="btn-primary" onclick="registerUser()">Create Account</button>
                 <div class="switch-auth">
@@ -416,16 +466,13 @@
                 <button class="logout-btn" onclick="logoutUser()">🚪 Logout</button>
             </div>
             
-            <!-- Stats -->
             <div class="stats-dashboard">
-                <div class="stat-card"><div class="stat-number" id="totalAttendance">0</div><div class="stat-label">Total Attendance</div></div>
                 <div class="stat-card"><div class="stat-number" id="sundayCount">0</div><div class="stat-label">Sunday Services</div></div>
                 <div class="stat-card"><div class="stat-number" id="summitCount">0</div><div class="stat-label">Holy Ghost Summit</div></div>
+                <div class="stat-card"><div class="stat-number" id="totalCount">0</div><div class="stat-label">Total Attendance</div></div>
             </div>
             
-            <!-- Attendance Cards -->
             <div class="attendance-cards">
-                <!-- Sunday Service Card -->
                 <div class="attendance-card">
                     <div class="card-icon">🕊️</div>
                     <div class="card-title">Sunday Service</div>
@@ -434,32 +481,75 @@
                     <button id="sundayBtn" class="mark-btn" onclick="markAttendance('sunday')">✅ Mark Attendance for Sunday Service</button>
                 </div>
                 
-                <!-- Holy Ghost Summit 2026 Card -->
                 <div class="attendance-card">
                     <div class="card-icon">🔥</div>
                     <div class="card-title">Holy Ghost Summit 2026</div>
                     <div class="card-date">Special Event | Coming Soon</div>
-                    <div id="summitStatus" class="attendance-status status-absent">Not Marked Yet</div>
-                    <button id="summitBtn" class="mark-btn" onclick="markAttendance('summit')">🔥 Mark Attendance for Holy Ghost Summit</button>
+                    <div id="summitStatus" class="attendance-status status-absent">Not Registered Yet</div>
+                    <button id="summitBtn" class="mark-btn" onclick="markAttendance('summit')">🔥 Register for Holy Ghost Summit</button>
                 </div>
             </div>
             
-            <!-- Attendance History -->
             <div class="history-section">
-                <h3 class="card-title">📊 My Attendance History</h3>
+                <h3>📊 My Attendance History</h3>
                 <div id="historyList" class="history-table">
                     <table>
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Event</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="historyBody">
-                            <tr><td colspan="3" style="text-align:center;">No attendance records yet</td></tr>
-                        </tbody>
+                        <thead><tr><th>Date</th><th>Event</th><th>Status</th></tr></thead>
+                        <tbody id="historyBody"><tr><td colspan="3" style="text-align:center;">Loading...</td></tr></tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Button (Hidden from regular users, visible to you) -->
+    <div class="admin-fab" onclick="showAdminPanel()">
+        <i class="fas fa-chart-bar"></i>
+    </div>
+    
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-container">
+            <button class="close-admin" onclick="closeAdminPanel()">✖ Close</button>
+            <h2>🔐 Church Admin Dashboard</h2>
+            
+            <div id="adminLoginArea">
+                <input type="password" id="adminPassword" placeholder="Enter Admin Password" style="padding: 10px; margin: 1rem 0; width: 100%; max-width: 300px;">
+                <button onclick="adminLogin()" style="background: #1a3c2c; color: white; border: none; padding: 10px 20px;">Login</button>
+                <div id="adminLoginMsg"></div>
+            </div>
+            
+            <div id="adminDataArea" style="display: none;">
+                <div class="admin-tabs">
+                    <div class="admin-tab active" onclick="showAdminTab('sunday')">🙏 Sunday Service Records</div>
+                    <div class="admin-tab" onclick="showAdminTab('summit')">🔥 Holy Ghost Summit Records</div>
+                    <div class="admin-tab" onclick="showAdminTab('users')">👥 Registered Members</div>
+                    <div class="admin-tab" onclick="showAdminTab('all')">📋 All Attendance</div>
+                </div>
+                
+                <div style="margin: 1rem 0;">
+                    <button onclick="exportAllData()" style="background: #27ae60; padding: 10px 20px;">📎 Export CSV</button>
+                    <button onclick="syncFromGoogleSheet()" style="background: #2980b9; padding: 10px 20px; margin-left: 0.5rem;">🔄 Sync from Google Sheets</button>
+                </div>
+                
+                <div id="sundayRecords" class="admin-table-container">
+                    <h3>Sunday Service Attendance</h3>
+                    <table style="width:100%"><thead><tr><th>#</th><th>Date</th><th>Member Name</th><th>Phone</th><th>Timestamp</th></tr></thead><tbody id="sundayTableBody"></tbody></table>
+                </div>
+                
+                <div id="summitRecords" class="admin-table-container hidden">
+                    <h3>Holy Ghost Summit 2026 Registrations</h3>
+                    <table style="width:100%"><thead><tr><th>#</th><th>Date</th><th>Member Name</th><th>Phone</th><th>Timestamp</th></tr></thead><tbody id="summitTableBody"></tbody></table>
+                </div>
+                
+                <div id="usersRecords" class="admin-table-container hidden">
+                    <h3>Registered Members</h3>
+                    <table style="width:100%"><thead><tr><th>#</th><th>Full Name</th><th>Sex</th><th>Phone</th><th>Registered Date</th></tr></thead><tbody id="usersTableBody"></tbody></table>
+                </div>
+                
+                <div id="allRecords" class="admin-table-container hidden">
+                    <h3>All Attendance Records</h3>
+                    <table style="width:100%"><thead><tr><th>#</th><th>Date</th><th>Event</th><th>Member Name</th><th>Phone</th></tr></thead><tbody id="allTableBody"></tbody></table>
                 </div>
             </div>
         </div>
@@ -471,42 +561,55 @@
     </div>
 
     <script>
-        // Storage Keys
-        const USERS_KEY = "CSOC_USERS";
-        const ATTENDANCE_KEY = "CSOC_ATTENDANCE";
+        // Google Sheets URL (Your existing backend)
+        const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxvfr55dPPx3crp2be--_Tgirr3T9xqqiAUeWNIGsCpjJlqBcJFLErO5-HMgY2DQP6i/exec";
+        const ADMIN_PASSWORD = "csoc2025";
         
         let currentUser = null;
+        let allData = { users: [], attendance: [] };
         
-        // Event definitions
-        const EVENTS = [
-            { id: "sunday", name: "Sunday Service", color: "#2e7d32" },
-            { id: "summit", name: "Holy Ghost Summit 2026", color: "#e67e22" }
-        ];
-        
-        // Load users from storage
-        function loadUsers() {
-            const stored = localStorage.getItem(USERS_KEY);
-            if (stored) return JSON.parse(stored);
-            return [];
+        // ============ LOAD DATA FROM GOOGLE SHEETS ============
+        async function loadAllData() {
+            try {
+                const response = await fetch(GOOGLE_SHEET_URL + "?action=getData", {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                const data = await response.json();
+                if (data && data.users) {
+                    allData = data;
+                    localStorage.setItem('csoc_all_data', JSON.stringify(allData));
+                } else {
+                    loadLocalFallback();
+                }
+            } catch (error) {
+                console.log("Using local storage fallback");
+                loadLocalFallback();
+            }
         }
         
-        function saveUsers(users) {
-            localStorage.setItem(USERS_KEY, JSON.stringify(users));
+        function loadLocalFallback() {
+            const stored = localStorage.getItem('csoc_all_data');
+            if (stored) {
+                allData = JSON.parse(stored);
+            } else {
+                allData = { users: [], attendance: [] };
+            }
         }
         
-        // Load attendance records
-        function loadAttendance() {
-            const stored = localStorage.getItem(ATTENDANCE_KEY);
-            if (stored) return JSON.parse(stored);
-            return [];
+        async function saveToGoogleSheet(data, type) {
+            try {
+                await fetch(GOOGLE_SHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ type: type, data: data })
+                });
+            } catch(e) { console.log("Sync to sheet failed"); }
         }
         
-        function saveAttendance(attendance) {
-            localStorage.setItem(ATTENDANCE_KEY, JSON.stringify(attendance));
-        }
-        
-        // Register new user
-        function registerUser() {
+        // ============ USER MANAGEMENT ============
+        async function registerUser() {
             const firstName = document.getElementById('regFirstName').value.trim();
             const secondName = document.getElementById('regSecondName').value.trim();
             const surname = document.getElementById('regSurname').value.trim();
@@ -519,97 +622,61 @@
                 return;
             }
             
-            if (password.length < 4) {
-                showMessage('registerMessage', 'Password must be at least 4 characters', 'error');
-                return;
-            }
+            await loadAllData();
             
-            const users = loadUsers();
-            if (users.find(u => u.phone === phone)) {
-                showMessage('registerMessage', 'This phone number is already registered. Please login.', 'error');
+            if (allData.users.find(u => u.phone === phone)) {
+                showMessage('registerMessage', 'Phone number already registered', 'error');
                 return;
             }
             
             const newUser = {
                 id: Date.now(),
-                firstName,
-                secondName,
-                surname,
-                sex,
-                phone,
-                password,
+                firstName, secondName, surname, sex, phone, password,
                 registeredAt: new Date().toISOString()
             };
             
-            users.push(newUser);
-            saveUsers(users);
+            allData.users.push(newUser);
+            localStorage.setItem('csoc_all_data', JSON.stringify(allData));
+            await saveToGoogleSheet(newUser, 'user');
             
-            showMessage('registerMessage', 'Account created successfully! Please login.', 'success');
-            
-            // Clear form and switch to login
-            document.getElementById('regFirstName').value = '';
-            document.getElementById('regSecondName').value = '';
-            document.getElementById('regSurname').value = '';
-            document.getElementById('regSex').value = '';
-            document.getElementById('regPhone').value = '';
-            document.getElementById('regPassword').value = '';
-            
+            showMessage('registerMessage', 'Account created! Please login.', 'success');
             showLogin();
         }
         
-        // Login user
-        function loginUser() {
+        async function loginUser() {
             const phone = document.getElementById('loginPhone').value.trim();
             const password = document.getElementById('loginPassword').value;
             
-            if (!phone || !password) {
-                showMessage('loginMessage', 'Please enter phone number and password', 'error');
-                return;
-            }
+            await loadAllData();
             
-            const users = loadUsers();
-            const user = users.find(u => u.phone === phone && u.password === password);
+            const user = allData.users.find(u => u.phone === phone && u.password === password);
             
             if (!user) {
-                showMessage('loginMessage', 'Invalid phone number or password', 'error');
+                showMessage('loginMessage', 'Invalid phone or password', 'error');
                 return;
             }
             
             currentUser = user;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            localStorage.setItem('csoc_current_user', JSON.stringify(currentUser));
             
-            // Show dashboard
             document.getElementById('authSection').classList.add('hidden');
             document.getElementById('dashboardSection').classList.remove('hidden');
-            
-            // Update welcome message
             document.getElementById('userName').textContent = `${user.firstName} ${user.surname}`;
             
-            // Load user's attendance
-            loadUserAttendance();
-            
-            showMessage('loginMessage', '', '');
-            document.getElementById('loginPhone').value = '';
-            document.getElementById('loginPassword').value = '';
+            loadUserDashboard();
         }
         
-        // Load user's attendance records
-        function loadUserAttendance() {
+        function loadUserDashboard() {
             if (!currentUser) return;
             
-            const allAttendance = loadAttendance();
-            const userAttendance = allAttendance.filter(a => a.userId === currentUser.id);
-            
-            // Update stats
-            const total = userAttendance.length;
+            const userAttendance = allData.attendance.filter(a => a.userId === currentUser.id);
             const sundayCount = userAttendance.filter(a => a.eventId === 'sunday').length;
             const summitCount = userAttendance.filter(a => a.eventId === 'summit').length;
             
-            document.getElementById('totalAttendance').textContent = total;
             document.getElementById('sundayCount').textContent = sundayCount;
             document.getElementById('summitCount').textContent = summitCount;
+            document.getElementById('totalCount').textContent = userAttendance.length;
             
-            // Check if already marked for this week's Sunday
             const thisSunday = getThisSunday();
             const markedSunday = userAttendance.find(a => a.eventId === 'sunday' && a.date === thisSunday);
             const sundayBtn = document.getElementById('sundayBtn');
@@ -627,7 +694,6 @@
                 sundayStatus.className = 'attendance-status status-absent';
             }
             
-            // Check if marked for Summit
             const markedSummit = userAttendance.find(a => a.eventId === 'summit');
             const summitBtn = document.getElementById('summitBtn');
             const summitStatus = document.getElementById('summitStatus');
@@ -639,27 +705,21 @@
                 summitStatus.className = 'attendance-status status-present';
             } else {
                 summitBtn.disabled = false;
-                summitBtn.textContent = '🔥 Mark Attendance for Holy Ghost Summit';
+                summitBtn.textContent = '🔥 Register for Holy Ghost Summit';
                 summitStatus.textContent = 'Not Registered Yet';
                 summitStatus.className = 'attendance-status status-absent';
             }
             
-            // Update history table
             const historyBody = document.getElementById('historyBody');
             if (userAttendance.length === 0) {
                 historyBody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No attendance records yet</td></tr>';
             } else {
                 historyBody.innerHTML = userAttendance.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp)).map(record => `
-                    <tr>
-                        <td>${record.date}</td>
-                        <td>${record.eventName}</td>
-                        <td><span class="status-present">✓ Present</span></td>
-                    </tr>
+                    <tr><td>${record.date}</td><td>${record.eventName}</td><td><span class="status-present">✓ Present</span></td></tr>
                 `).join('');
             }
         }
         
-        // Get this Sunday's date (YYYY-MM-DD)
         function getThisSunday() {
             const today = new Date();
             const day = today.getDay();
@@ -669,115 +729,142 @@
             return sunday.toISOString().split('T')[0];
         }
         
-        // Mark attendance for an event
-        function markAttendance(eventId) {
+        async function markAttendance(eventId) {
             if (!currentUser) return;
             
-            const event = EVENTS.find(e => e.id === eventId);
-            if (!event) return;
+            const events = { sunday: { name: "Sunday Service", date: getThisSunday() }, summit: { name: "Holy Ghost Summit 2026", date: new Date().toISOString().split('T')[0] } };
+            const event = events[eventId];
             
-            const allAttendance = loadAttendance();
+            const existing = allData.attendance.find(a => a.userId === currentUser.id && a.eventId === eventId && (eventId !== 'sunday' || a.date === event.date));
             
-            // Check if already marked
-            if (eventId === 'sunday') {
-                const thisSunday = getThisSunday();
-                const alreadyMarked = allAttendance.find(a => a.userId === currentUser.id && a.eventId === 'sunday' && a.date === thisSunday);
-                if (alreadyMarked) {
-                    alert('You have already marked attendance for this Sunday service!');
-                    return;
-                }
-            } else if (eventId === 'summit') {
-                const alreadyMarked = allAttendance.find(a => a.userId === currentUser.id && a.eventId === 'summit');
-                if (alreadyMarked) {
-                    alert('You have already registered for Holy Ghost Summit 2026!');
-                    return;
-                }
+            if (existing) {
+                alert(`You have already ${eventId === 'sunday' ? 'marked attendance for this Sunday' : 'registered for Holy Ghost Summit'}!`);
+                return;
             }
             
             const newAttendance = {
                 id: Date.now(),
                 userId: currentUser.id,
-                eventId: event.id,
+                eventId: eventId,
                 eventName: event.name,
-                date: eventId === 'sunday' ? getThisSunday() : new Date().toISOString().split('T')[0],
+                date: event.date,
                 timestamp: new Date().toISOString(),
                 userName: `${currentUser.firstName} ${currentUser.surname}`,
                 userPhone: currentUser.phone
             };
             
-            allAttendance.push(newAttendance);
-            saveAttendance(allAttendance);
+            allData.attendance.push(newAttendance);
+            localStorage.setItem('csoc_all_data', JSON.stringify(allData));
+            await saveToGoogleSheet(newAttendance, 'attendance');
             
-            // Also send to Google Sheets (optional)
-            try {
-                fetch("https://script.google.com/macros/s/AKfycbxvfr55dPPx3crp2be--_Tgirr3T9xqqiAUeWNIGsCpjJlqBcJFLErO5-HMgY2DQP6i/exec", {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: JSON.stringify(newAttendance)
-                });
-            } catch(e) {}
-            
-            // Show success message
-            alert(`✅ Attendance marked for ${event.name}! Thank you.`);
-            
-            // Reload user attendance
-            loadUserAttendance();
+            alert(`✅ ${eventId === 'sunday' ? 'Attendance marked for Sunday Service' : 'Registration confirmed for Holy Ghost Summit 2026'}!`);
+            loadUserDashboard();
         }
         
-        // Logout
         function logoutUser() {
             currentUser = null;
-            localStorage.removeItem('currentUser');
+            localStorage.removeItem('csoc_current_user');
             document.getElementById('authSection').classList.remove('hidden');
             document.getElementById('dashboardSection').classList.add('hidden');
             showLogin();
         }
         
-        // UI Helpers
-        function showRegister() {
-            document.getElementById('loginForm').classList.add('hidden');
-            document.getElementById('registerForm').classList.remove('hidden');
-            document.getElementById('loginMessage').innerHTML = '';
-            document.getElementById('registerMessage').innerHTML = '';
+        // ============ ADMIN FUNCTIONS ============
+        function showAdminPanel() { document.getElementById('adminPanel').style.display = 'block'; }
+        function closeAdminPanel() { document.getElementById('adminPanel').style.display = 'none'; }
+        
+        function adminLogin() {
+            const pwd = document.getElementById('adminPassword').value;
+            if (pwd === ADMIN_PASSWORD) {
+                document.getElementById('adminLoginArea').style.display = 'none';
+                document.getElementById('adminDataArea').style.display = 'block';
+                loadAdminTables();
+            } else {
+                document.getElementById('adminLoginMsg').innerHTML = '<div class="message error">Wrong password!</div>';
+            }
         }
         
-        function showLogin() {
-            document.getElementById('registerForm').classList.add('hidden');
-            document.getElementById('loginForm').classList.remove('hidden');
-            document.getElementById('loginMessage').innerHTML = '';
-            document.getElementById('registerMessage').innerHTML = '';
+        async function loadAdminTables() {
+            await loadAllData();
+            
+            const sundayRecords = allData.attendance.filter(a => a.eventId === 'sunday').sort((a,b) => new Date(b.date) - new Date(a.date));
+            const summitRecords = allData.attendance.filter(a => a.eventId === 'summit').sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            document.getElementById('sundayTableBody').innerHTML = sundayRecords.map((a, i) => `
+                <tr><td>${i+1}</td><td>${a.date}</td><td>${a.userName}</td><td>${a.userPhone}</td><td>${new Date(a.timestamp).toLocaleString()}</td></tr>
+            `).join('');
+            
+            document.getElementById('summitTableBody').innerHTML = summitRecords.map((a, i) => `
+                <tr><td>${i+1}</td><td>${a.date}</td><td>${a.userName}</td><td>${a.userPhone}</td><td>${new Date(a.timestamp).toLocaleString()}</td></tr>
+            `).join('');
+            
+            document.getElementById('usersTableBody').innerHTML = allData.users.map((u, i) => `
+                <tr><td>${i+1}</td><td>${u.firstName} ${u.secondName} ${u.surname}</td><td>${u.sex}</td><td>${u.phone}</td><td>${new Date(u.registeredAt).toLocaleDateString()}</td></tr>
+            `).join('');
+            
+            const allAttendance = allData.attendance.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+            document.getElementById('allTableBody').innerHTML = allAttendance.map((a, i) => `
+                <tr><td>${i+1}</td><td>${a.date}</td><td>${a.eventName}</td><td>${a.userName}</td><td>${a.userPhone}</td></tr>
+            `).join('');
+        }
+        
+        function showAdminTab(tab) {
+            document.querySelectorAll('.admin-table-container').forEach(t => t.classList.add('hidden'));
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            
+            if (tab === 'sunday') document.getElementById('sundayRecords').classList.remove('hidden');
+            if (tab === 'summit') document.getElementById('summitRecords').classList.remove('hidden');
+            if (tab === 'users') document.getElementById('usersRecords').classList.remove('hidden');
+            if (tab === 'all') document.getElementById('allRecords').classList.remove('hidden');
+            
+            event.target.classList.add('active');
+        }
+        
+        function exportAllData() {
+            let csv = "Event Type,Date,Member Name,Phone Number,Timestamp\n";
+            allData.attendance.forEach(a => {
+                csv += `"${a.eventName}","${a.date}","${a.userName}","${a.userPhone}","${a.timestamp}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `csoc_attendance_${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+        }
+        
+        async function syncFromGoogleSheet() {
+            await loadAllData();
+            loadAdminTables();
+            alert("Data synced successfully!");
         }
         
         function showMessage(elementId, message, type) {
             const element = document.getElementById(elementId);
             element.innerHTML = `<div class="message ${type}">${message}</div>`;
-            setTimeout(() => {
-                if (element.innerHTML.includes(message)) {
-                    element.innerHTML = '';
-                }
-            }, 3000);
+            setTimeout(() => { if (element.innerHTML.includes(message)) element.innerHTML = ''; }, 3000);
         }
         
-        // Check for existing session
+        function showRegister() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.remove('hidden');
+        }
+        
+        function showLogin() {
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+        }
+        
         function checkSession() {
-            const savedUser = localStorage.getItem('currentUser');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                const users = loadUsers();
-                const validUser = users.find(u => u.id === currentUser.id);
-                if (validUser) {
-                    currentUser = validUser;
-                    document.getElementById('authSection').classList.add('hidden');
-                    document.getElementById('dashboardSection').classList.remove('hidden');
-                    document.getElementById('userName').textContent = `${currentUser.firstName} ${currentUser.surname}`;
-                    loadUserAttendance();
-                } else {
-                    localStorage.removeItem('currentUser');
-                }
+            const saved = localStorage.getItem('csoc_current_user');
+            if (saved) {
+                currentUser = JSON.parse(saved);
+                document.getElementById('authSection').classList.add('hidden');
+                document.getElementById('dashboardSection').classList.remove('hidden');
+                document.getElementById('userName').textContent = `${currentUser.firstName} ${currentUser.surname}`;
+                loadAllData().then(() => loadUserDashboard());
             }
         }
         
-        // Initialize
         checkSession();
     </script>
 </body>
