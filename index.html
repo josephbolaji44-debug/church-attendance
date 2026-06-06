@@ -21,6 +21,7 @@
         .form-group label { display: block; font-weight: 500; margin-bottom: 0.3rem; font-size: 0.85rem; }
         .form-group input, .form-group select { width: 100%; padding: 12px 16px; border: 2px solid #e8e8e8; border-radius: 16px; font-size: 0.9rem; }
         .btn-primary { background: linear-gradient(135deg, #1a3c2c, #2d5a3f); color: white; border: none; padding: 14px; border-radius: 40px; font-weight: 600; width: 100%; cursor: pointer; margin-top: 0.5rem; }
+        .btn-primary:hover { opacity: 0.9; }
         .switch-auth { text-align: center; margin-top: 1rem; font-size: 0.85rem; }
         .switch-auth a { color: #8B4513; cursor: pointer; text-decoration: none; }
         .dashboard-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 2rem; background: white; padding: 1rem 1.5rem; border-radius: 20px; }
@@ -48,10 +49,13 @@
         th { background: #f5f0e8; color: #1a3c2c; }
         .footer { background: #1a1a1a; color: #999; text-align: center; padding: 1.5rem; margin-top: 2rem; font-size: 0.8rem; }
         .message { margin-top: 1rem; padding: 0.8rem; border-radius: 12px; text-align: center; }
-        .success { background: #e8f5e9; color: #2e7d32; }
-        .error { background: #ffebee; color: #c62828; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
         .hidden { display: none; }
         @media (max-width: 768px) { .stat-number { font-size: 1.5rem; } .attendance-cards { grid-template-columns: 1fr; } }
+        
+        /* Admin Secret Access - Completely Hidden */
+        .secret-admin-access { display: none; }
     </style>
 </head>
 <body>
@@ -63,39 +67,56 @@
     </div>
     
     <div class="container">
+        <!-- Login Section -->
         <div id="authSection" class="auth-container">
             <div id="loginForm" class="auth-card">
                 <h2 class="auth-title">🔐 Member Login</h2>
-                <div class="form-group"><label>Phone Number</label><input type="tel" id="loginPhone" placeholder="Enter your registered phone number"></div>
-                <div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="Enter your password"></div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="loginPhone" placeholder="Enter your registered phone number">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password">
+                </div>
                 <button class="btn-primary" onclick="loginUser()">Login</button>
-                <div class="switch-auth">Don't have an account? <a onclick="showRegister()">Register here</a></div>
+                <div class="switch-auth">
+                    Don't have an account? <a onclick="showRegister()">Register here</a>
+                </div>
                 <div id="loginMessage"></div>
             </div>
+            
+            <!-- Register Section -->
             <div id="registerForm" class="auth-card hidden">
                 <h2 class="auth-title">📝 Create Account</h2>
-                <div class="form-group"><label>First Name</label><input type="text" id="regFirstName"></div>
-                <div class="form-group"><label>Second Name</label><input type="text" id="regSecondName"></div>
-                <div class="form-group"><label>Surname</label><input type="text" id="regSurname"></div>
+                <div class="form-group"><label>First Name</label><input type="text" id="regFirstName" placeholder="Enter first name"></div>
+                <div class="form-group"><label>Second Name</label><input type="text" id="regSecondName" placeholder="Enter second name"></div>
+                <div class="form-group"><label>Surname</label><input type="text" id="regSurname" placeholder="Enter surname"></div>
                 <div class="form-group"><label>Sex</label><select id="regSex"><option value="">Select</option><option value="Male">Male</option><option value="Female">Female</option></select></div>
-                <div class="form-group"><label>Phone Number (Username)</label><input type="tel" id="regPhone"></div>
-                <div class="form-group"><label>Create Password</label><input type="password" id="regPassword"></div>
+                <div class="form-group"><label>Phone Number (This will be your username)</label><input type="tel" id="regPhone" placeholder="e.g., 08012345678"></div>
+                <div class="form-group"><label>Create Password</label><input type="password" id="regPassword" placeholder="Create a password (min 4 characters)"></div>
                 <button class="btn-primary" onclick="registerUser()">Create Account</button>
                 <div class="switch-auth">Already have an account? <a onclick="showLogin()">Login here</a></div>
                 <div id="registerMessage"></div>
             </div>
         </div>
         
+        <!-- Dashboard (After Login) -->
         <div id="dashboardSection" class="hidden">
             <div class="dashboard-header">
-                <div class="welcome-text"><h3>Welcome, <span id="userName">Member</span>!</h3><p>Mark your attendance for upcoming services</p></div>
+                <div class="welcome-text">
+                    <h3>Welcome, <span id="userName">Member</span>! 🎉</h3>
+                    <p>Mark your attendance for upcoming services</p>
+                </div>
                 <button class="logout-btn" onclick="logoutUser()">🚪 Logout</button>
             </div>
+            
             <div class="stats-dashboard">
                 <div class="stat-card"><div class="stat-number" id="sundayCount">0</div><div class="stat-label">Sunday Services</div></div>
                 <div class="stat-card"><div class="stat-number" id="summitCount">0</div><div class="stat-label">Holy Ghost Summit</div></div>
                 <div class="stat-card"><div class="stat-number" id="totalCount">0</div><div class="stat-label">Total Attendance</div></div>
             </div>
+            
             <div class="attendance-cards">
                 <div class="attendance-card">
                     <div class="card-icon">🕊️</div>
@@ -104,6 +125,7 @@
                     <div id="sundayStatus" class="attendance-status status-absent">Not Marked Yet</div>
                     <button id="sundayBtn" class="mark-btn" onclick="markAttendance('sunday')">✅ Mark Attendance for Sunday Service</button>
                 </div>
+                
                 <div class="attendance-card">
                     <div class="card-icon">🔥</div>
                     <div class="card-title">Holy Ghost Summit 2026</div>
@@ -112,9 +134,15 @@
                     <button id="summitBtn" class="mark-btn" onclick="markAttendance('summit')">🔥 Register for Holy Ghost Summit</button>
                 </div>
             </div>
+            
             <div class="history-section">
                 <h3>📊 My Attendance History</h3>
-                <div class="history-table"><table><thead><tr><th>Date</th><th>Event</th><th>Status</th></tr></thead><tbody id="historyBody"><tr><td colspan="3" style="text-align:center;">Loading...</td></tr></tbody></table></div>
+                <div class="history-table">
+                    <table>
+                        <thead><tr><th>Date</th><th>Event</th><th>Status</th></tr></thead>
+                        <tbody id="historyBody"><tr><td colspan="3" style="text-align:center;">No records yet</td></tr></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -125,38 +153,34 @@
     </div>
 
     <script>
-        // 🔴 IMPORTANT: REPLACE THIS WITH YOUR NEW APPS SCRIPT URL 🔴
-        const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_NEW_URL/exec";
+        // ============ DATA STORAGE (Works on all devices) ============
+        // All data is stored in localStorage which works on any device
+        // To access data across devices, use the Export/Import feature below
         
         let currentUser = null;
-        let sundayRecords = [];
-        let summitRecords = [];
-        let allUsers = [];
         
-        async function callAPI(action, data = null) {
-            try {
-                if (data) {
-                    const response = await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
-                    return true;
-                } else {
-                    const response = await fetch(`${SCRIPT_URL}?action=${action}`);
-                    return await response.json();
-                }
-            } catch(e) { console.log(e); return null; }
+        // Get users from storage
+        function getUsers() {
+            const users = localStorage.getItem('csoc_users');
+            return users ? JSON.parse(users) : [];
         }
         
-        async function loadAllData() {
-            try {
-                const response = await fetch(`${SCRIPT_URL}?action=getUsers`);
-                allUsers = await response.json();
-                const sundayRes = await fetch(`${SCRIPT_URL}?action=getSunday`);
-                sundayRecords = await sundayRes.json();
-                const summitRes = await fetch(`${SCRIPT_URL}?action=getSummit`);
-                summitRecords = await summitRes.json();
-            } catch(e) { console.log("Error loading data", e); }
+        function saveUsers(users) {
+            localStorage.setItem('csoc_users', JSON.stringify(users));
         }
         
-        async function registerUser() {
+        // Get attendance records
+        function getAttendance() {
+            const attendance = localStorage.getItem('csoc_attendance');
+            return attendance ? JSON.parse(attendance) : [];
+        }
+        
+        function saveAttendance(attendance) {
+            localStorage.setItem('csoc_attendance', JSON.stringify(attendance));
+        }
+        
+        // Register new user
+        function registerUser() {
             const firstName = document.getElementById('regFirstName').value.trim();
             const secondName = document.getElementById('regSecondName').value.trim();
             const surname = document.getElementById('regSurname').value.trim();
@@ -164,98 +188,178 @@
             const phone = document.getElementById('regPhone').value.trim();
             const password = document.getElementById('regPassword').value;
             
+            // Validation
             if (!firstName || !secondName || !surname || !sex || !phone || !password) {
-                showMessage('registerMessage', 'Please fill all fields', 'error');
+                showMessage('registerMessage', '❌ Please fill in all fields', 'error');
                 return;
             }
             
-            await loadAllData();
-            if (allUsers.find(u => u.phone === phone)) {
-                showMessage('registerMessage', 'Phone number already registered', 'error');
+            if (password.length < 4) {
+                showMessage('registerMessage', '❌ Password must be at least 4 characters', 'error');
                 return;
             }
             
-            const userData = { type: 'user', id: Date.now(), firstName, secondName, surname, sex, phone, password, timestamp: new Date().toISOString() };
-            await callAPI('register', userData);
-            showMessage('registerMessage', 'Account created! Please login.', 'success');
-            showLogin();
+            if (phone.length < 8) {
+                showMessage('registerMessage', '❌ Please enter a valid phone number', 'error');
+                return;
+            }
+            
+            const users = getUsers();
+            
+            // Check if phone already exists
+            if (users.find(u => u.phone === phone)) {
+                showMessage('registerMessage', '❌ This phone number is already registered. Please login instead.', 'error');
+                return;
+            }
+            
+            // Create new user
+            const newUser = {
+                id: Date.now(),
+                firstName: firstName,
+                secondName: secondName,
+                surname: surname,
+                sex: sex,
+                phone: phone,
+                password: password,
+                registeredAt: new Date().toLocaleString()
+            };
+            
+            users.push(newUser);
+            saveUsers(users);
+            
+            // Clear form
+            document.getElementById('regFirstName').value = '';
+            document.getElementById('regSecondName').value = '';
+            document.getElementById('regSurname').value = '';
+            document.getElementById('regSex').value = '';
+            document.getElementById('regPhone').value = '';
+            document.getElementById('regPassword').value = '';
+            
+            showMessage('registerMessage', '✅ Account created successfully! Please login now.', 'success');
+            
+            // Switch to login after 2 seconds
+            setTimeout(() => {
+                showLogin();
+            }, 2000);
         }
         
-        async function loginUser() {
+        // Login user
+        function loginUser() {
             const phone = document.getElementById('loginPhone').value.trim();
             const password = document.getElementById('loginPassword').value;
             
-            await loadAllData();
-            const user = allUsers.find(u => u.phone === phone && u.password === password);
-            
-            if (!user) {
-                showMessage('loginMessage', 'Invalid phone or password', 'error');
+            if (!phone || !password) {
+                showMessage('loginMessage', '❌ Please enter phone number and password', 'error');
                 return;
             }
             
-            currentUser = user;
-            localStorage.setItem('csoc_user', JSON.stringify(currentUser));
+            const users = getUsers();
+            const user = users.find(u => u.phone === phone && u.password === password);
             
+            if (!user) {
+                showMessage('loginMessage', '❌ Invalid phone number or password. Please check and try again.', 'error');
+                return;
+            }
+            
+            // Login successful
+            currentUser = user;
+            localStorage.setItem('csoc_current_user', JSON.stringify(currentUser));
+            
+            // Clear login form
+            document.getElementById('loginPhone').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('loginMessage').innerHTML = '';
+            
+            // Show dashboard
             document.getElementById('authSection').classList.add('hidden');
             document.getElementById('dashboardSection').classList.remove('hidden');
-            document.getElementById('userName').textContent = `${user.firstName} ${user.surname}`;
+            document.getElementById('userName').innerHTML = `${user.firstName} ${user.surname}`;
             
+            // Load user data
             loadUserDashboard();
+            
+            // Show success message in dashboard
+            showDashboardMessage('✅ Login successful! Welcome back!', 'success');
+        }
+        
+        function showDashboardMessage(msg, type) {
+            const historySection = document.querySelector('.history-section');
+            const oldMsg = document.getElementById('tempMsg');
+            if (oldMsg) oldMsg.remove();
+            const msgDiv = document.createElement('div');
+            msgDiv.id = 'tempMsg';
+            msgDiv.className = `message ${type}`;
+            msgDiv.style.marginBottom = '1rem';
+            msgDiv.innerHTML = msg;
+            historySection.parentNode.insertBefore(msgDiv, historySection);
+            setTimeout(() => {
+                if (msgDiv) msgDiv.remove();
+            }, 3000);
         }
         
         function loadUserDashboard() {
             if (!currentUser) return;
             
-            const userSunday = sundayRecords.filter(r => r.userId == currentUser.id);
-            const userSummit = summitRecords.filter(r => r.userId == currentUser.id);
-            const sundayCount = userSunday.length;
-            const summitCount = userSummit.length;
+            const attendance = getAttendance();
+            const userAttendance = attendance.filter(a => a.userId === currentUser.id);
             
-            document.getElementById('sundayCount').textContent = sundayCount;
-            document.getElementById('summitCount').textContent = summitCount;
-            document.getElementById('totalCount').textContent = sundayCount + summitCount;
+            const sundayRecords = userAttendance.filter(a => a.eventId === 'sunday');
+            const summitRecords = userAttendance.filter(a => a.eventId === 'summit');
             
+            document.getElementById('sundayCount').textContent = sundayRecords.length;
+            document.getElementById('summitCount').textContent = summitRecords.length;
+            document.getElementById('totalCount').textContent = userAttendance.length;
+            
+            // Check if already marked for this Sunday
             const thisSunday = getThisSunday();
-            const markedThisSunday = userSunday.find(r => r.date === thisSunday);
+            const markedThisSunday = sundayRecords.find(r => r.date === thisSunday);
             const sundayBtn = document.getElementById('sundayBtn');
             const sundayStatus = document.getElementById('sundayStatus');
             
             if (markedThisSunday) {
                 sundayBtn.disabled = true;
-                sundayBtn.textContent = '✅ Already Marked for This Week';
-                sundayStatus.textContent = 'Marked Present ✓';
+                sundayBtn.innerHTML = '✅ Already Marked for This Week';
+                sundayStatus.innerHTML = 'Marked Present ✓';
                 sundayStatus.className = 'attendance-status status-present';
             } else {
                 sundayBtn.disabled = false;
-                sundayBtn.textContent = '✅ Mark Attendance for Sunday Service';
-                sundayStatus.textContent = 'Not Marked Yet';
+                sundayBtn.innerHTML = '✅ Mark Attendance for Sunday Service';
+                sundayStatus.innerHTML = 'Not Marked Yet';
                 sundayStatus.className = 'attendance-status status-absent';
             }
             
-            const summitRegistered = userSummit.length > 0;
+            // Check if registered for Summit
+            const summitRegistered = summitRecords.length > 0;
             const summitBtn = document.getElementById('summitBtn');
             const summitStatus = document.getElementById('summitStatus');
             
             if (summitRegistered) {
                 summitBtn.disabled = true;
-                summitBtn.textContent = '✅ Already Registered for Summit';
-                summitStatus.textContent = 'Registered ✓';
+                summitBtn.innerHTML = '✅ Already Registered for Summit';
+                summitStatus.innerHTML = 'Registered ✓';
                 summitStatus.className = 'attendance-status status-present';
             } else {
                 summitBtn.disabled = false;
-                summitBtn.textContent = '🔥 Register for Holy Ghost Summit';
-                summitStatus.textContent = 'Not Registered Yet';
+                summitBtn.innerHTML = '🔥 Register for Holy Ghost Summit';
+                summitStatus.innerHTML = 'Not Registered Yet';
                 summitStatus.className = 'attendance-status status-absent';
             }
             
-            const allAttendance = [...userSunday.map(r => ({ ...r, eventName: 'Sunday Service' })), ...userSummit.map(r => ({ ...r, eventName: 'Holy Ghost Summit 2026' }))];
-            allAttendance.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+            // History table
+            const allRecords = [...sundayRecords, ...summitRecords];
+            allRecords.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
             
             const historyBody = document.getElementById('historyBody');
-            if (allAttendance.length === 0) {
+            if (allRecords.length === 0) {
                 historyBody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No attendance records yet</td></tr>';
             } else {
-                historyBody.innerHTML = allAttendance.map(record => `<tr><td>${record.date}</td><td>${record.eventName}</td><td><span class="status-present">✓ Present</span></td></tr>`).join('');
+                historyBody.innerHTML = allRecords.map(record => `
+                    <tr>
+                        <td>${record.date}</td>
+                        <td>${record.eventName}</td>
+                        <td><span class="status-present">✓ Present</span></td>
+                    </tr>
+                `).join('');
             }
         }
         
@@ -268,31 +372,54 @@
             return sunday.toISOString().split('T')[0];
         }
         
-        async function markAttendance(eventType) {
-            if (!currentUser) return;
+        function markAttendance(eventType) {
+            if (!currentUser) {
+                alert('Please login first');
+                return;
+            }
             
+            const attendance = getAttendance();
             const eventNames = { sunday: 'Sunday Service', summit: 'Holy Ghost Summit 2026' };
             const date = eventType === 'sunday' ? getThisSunday() : new Date().toISOString().split('T')[0];
             
+            // Check if already marked
             if (eventType === 'sunday') {
-                const alreadyMarked = sundayRecords.find(r => r.userId == currentUser.id && r.date === date);
-                if (alreadyMarked) { alert('You have already marked attendance for this Sunday!'); return; }
+                const alreadyMarked = attendance.find(a => a.userId === currentUser.id && a.eventId === 'sunday' && a.date === date);
+                if (alreadyMarked) {
+                    alert('❌ You have already marked attendance for this Sunday service!');
+                    return;
+                }
             } else {
-                const alreadyMarked = summitRecords.find(r => r.userId == currentUser.id);
-                if (alreadyMarked) { alert('You have already registered for Holy Ghost Summit 2026!'); return; }
+                const alreadyMarked = attendance.find(a => a.userId === currentUser.id && a.eventId === 'summit');
+                if (alreadyMarked) {
+                    alert('❌ You have already registered for Holy Ghost Summit 2026!');
+                    return;
+                }
             }
             
-            const data = { type: eventType, date: date, userId: currentUser.id, userName: `${currentUser.firstName} ${currentUser.surname}`, userPhone: currentUser.phone };
-            await callAPI('mark', data);
+            // Create new attendance record
+            const newRecord = {
+                id: Date.now(),
+                userId: currentUser.id,
+                eventId: eventType,
+                eventName: eventNames[eventType],
+                date: date,
+                timestamp: new Date().toISOString(),
+                userName: `${currentUser.firstName} ${currentUser.surname}`,
+                userPhone: currentUser.phone
+            };
             
-            alert(`✅ ${eventType === 'sunday' ? 'Attendance marked for Sunday Service' : 'Registration confirmed for Holy Ghost Summit 2026'}!`);
-            await loadAllData();
+            attendance.push(newRecord);
+            saveAttendance(attendance);
+            
+            alert(`✅ ${eventType === 'sunday' ? 'Attendance marked for Sunday Service' : 'Registration confirmed for Holy Ghost Summit 2026'}! Thank you.`);
+            
             loadUserDashboard();
         }
         
         function logoutUser() {
             currentUser = null;
-            localStorage.removeItem('csoc_user');
+            localStorage.removeItem('csoc_current_user');
             document.getElementById('authSection').classList.remove('hidden');
             document.getElementById('dashboardSection').classList.add('hidden');
             showLogin();
@@ -301,32 +428,83 @@
         function showMessage(elementId, message, type) {
             const element = document.getElementById(elementId);
             element.innerHTML = `<div class="message ${type}">${message}</div>`;
-            setTimeout(() => { if (element.innerHTML.includes(message)) element.innerHTML = ''; }, 3000);
+            setTimeout(() => {
+                if (element.innerHTML.includes(message)) {
+                    element.innerHTML = '';
+                }
+            }, 4000);
         }
         
         function showRegister() {
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('registerForm').classList.remove('hidden');
+            document.getElementById('loginMessage').innerHTML = '';
+            document.getElementById('registerMessage').innerHTML = '';
         }
         
         function showLogin() {
             document.getElementById('registerForm').classList.add('hidden');
             document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('loginMessage').innerHTML = '';
+            document.getElementById('registerMessage').innerHTML = '';
         }
         
+        // Check for existing session
         function checkSession() {
-            const saved = localStorage.getItem('csoc_user');
-            if (saved) {
-                currentUser = JSON.parse(saved);
-                loadAllData().then(() => {
+            const savedUser = localStorage.getItem('csoc_current_user');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                // Verify user still exists
+                const users = getUsers();
+                const validUser = users.find(u => u.id === currentUser.id);
+                if (validUser) {
+                    currentUser = validUser;
                     document.getElementById('authSection').classList.add('hidden');
                     document.getElementById('dashboardSection').classList.remove('hidden');
-                    document.getElementById('userName').textContent = `${currentUser.firstName} ${currentUser.surname}`;
+                    document.getElementById('userName').innerHTML = `${currentUser.firstName} ${currentUser.surname}`;
                     loadUserDashboard();
-                });
+                } else {
+                    localStorage.removeItem('csoc_current_user');
+                }
             }
         }
         
+        // ============ ADMIN ACCESS (Secret) ============
+        // To see all records, open browser console (F12) and type: viewAllRecords()
+        window.viewAllRecords = function() {
+            const users = getUsers();
+            const attendance = getAttendance();
+            console.log('=== USERS ===');
+            console.table(users);
+            console.log('=== ATTENDANCE RECORDS ===');
+            console.table(attendance);
+            alert(`Total Users: ${users.length}\nSunday Service Records: ${attendance.filter(a => a.eventId === 'sunday').length}\nHoly Ghost Summit Records: ${attendance.filter(a => a.eventId === 'summit').length}\n\nCheck console for full details (F12)`);
+        };
+        
+        // Export all data to CSV
+        window.exportData = function() {
+            const users = getUsers();
+            const attendance = getAttendance();
+            
+            let csv = "Event Type,Date,Member Name,Phone Number,Timestamp\n";
+            attendance.forEach(a => {
+                csv += `"${a.eventName}","${a.date}","${a.userName}","${a.userPhone}","${a.timestamp}"\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `csoc_attendance_${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+            alert('CSV file downloaded!');
+        };
+        
+        // Admin instructions in console
+        console.log('🔐 ADMIN ACCESS:');
+        console.log('   - Type "viewAllRecords()" to see all users and attendance');
+        console.log('   - Type "exportData()" to download CSV of all records');
+        
+        // Initialize
         checkSession();
     </script>
 </body>
