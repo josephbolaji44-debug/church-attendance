@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>CSOC Oke Ayo Osu | Professional Church Management System</title>
+    <title>CSOC Oke Ayo Osu | Church Management System</title>
     <meta name="description" content="Complete church management system for CSOC Oke Ayo Osu Model Parish">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,23 +23,19 @@
             color: #2c2c2c;
         }
         
-        /* Top Banner */
         .top-banner {
             background: linear-gradient(135deg, #8B4513, #A0522D);
             color: #FFD700;
             text-align: center;
             padding: 8px;
             font-size: 0.8rem;
-            letter-spacing: 1px;
         }
         
-        /* Header */
         .main-header {
             background: linear-gradient(135deg, #1a3c2c 0%, #2d5a3f 100%);
             color: white;
             padding: 2rem 1rem;
             text-align: center;
-            position: relative;
         }
         
         .logo {
@@ -57,7 +53,6 @@
         .main-header h1 {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
-            letter-spacing: 1px;
         }
         
         .main-header h2 {
@@ -65,7 +60,6 @@
             font-weight: 400;
         }
         
-        /* Navigation */
         .nav-bar {
             background: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -87,7 +81,6 @@
             color: #2d5a3f;
             font-weight: 500;
             font-size: 0.9rem;
-            transition: 0.3s;
             cursor: pointer;
         }
         
@@ -101,10 +94,9 @@
             padding: 1.5rem;
         }
         
-        /* Stats Dashboard */
         .stats-dashboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 1rem;
             margin-bottom: 2rem;
         }
@@ -115,31 +107,25 @@
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
         }
         
         .stat-card i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #FFD700;
             margin-bottom: 0.5rem;
         }
         
         .stat-number {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: #1a3c2c;
         }
         
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #666;
         }
         
-        /* Two Column Layout */
         .two-columns {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -153,8 +139,7 @@
             }
         }
         
-        /* Form Card */
-        .form-card, .info-card, .events-card, .history-card {
+        .form-card, .info-card, .events-card, .history-card, .about-card {
             background: white;
             border-radius: 24px;
             padding: 1.5rem;
@@ -200,7 +185,6 @@
             cursor: pointer;
         }
         
-        /* QR Code Section */
         .qr-section {
             text-align: center;
             padding: 1rem;
@@ -214,7 +198,6 @@
             margin: 1rem 0;
         }
         
-        /* Events List */
         .event-item {
             background: #f8f9fa;
             padding: 0.8rem;
@@ -223,6 +206,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
         
         .event-name {
@@ -245,7 +229,6 @@
             font-size: 0.7rem;
         }
         
-        /* Attendance History Table */
         .history-table {
             width: 100%;
             overflow-x: auto;
@@ -268,7 +251,6 @@
             color: #1a3c2c;
         }
         
-        /* Chart Container */
         .chart-container {
             margin-top: 1.5rem;
             background: white;
@@ -280,7 +262,21 @@
             max-height: 300px;
         }
         
-        /* Footer */
+        .about-text {
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        .about-quote {
+            font-style: italic;
+            color: #8B4513;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #FFD700;
+        }
+        
         .main-footer {
             background: #1a1a1a;
             color: #999;
@@ -307,21 +303,16 @@
             color: #c62828;
         }
         
-        .loading {
-            background: #e3f2fd;
-            color: #1565c0;
-        }
-        
-        /* Tabs */
         .tabs {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             margin-bottom: 1.5rem;
             border-bottom: 2px solid #e8e8e8;
+            flex-wrap: wrap;
         }
         
         .tab {
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 1.2rem;
             cursor: pointer;
             font-weight: 500;
             color: #666;
@@ -340,8 +331,20 @@
             display: block;
         }
         
-        /* Admin Panel (Hidden by default) */
-        .admin-panel {
+        /* Secret Admin Button - Hidden from users */
+        .secret-admin {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 999;
+        }
+        
+        /* Admin Panel - Hidden by default */
+        .admin-overlay {
             display: none;
             position: fixed;
             top: 0;
@@ -371,10 +374,10 @@
             cursor: pointer;
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
-            .stat-number { font-size: 1.5rem; }
+            .stat-number { font-size: 1.3rem; }
             th, td { font-size: 0.7rem; padding: 0.5rem; }
+            .tab { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -392,10 +395,10 @@
     <div class="nav-bar">
         <div class="nav-links">
             <a onclick="showTab('register-tab')">📋 Register</a>
+            <a onclick="showTab('about-tab')">📖 About Us</a>
             <a onclick="showTab('events-tab')">📅 Events</a>
             <a onclick="showTab('history-tab')">📊 My History</a>
             <a onclick="showTab('qr-tab')">📱 QR Code</a>
-            <a onclick="showAdminPanel()">🔐 Admin</a>
         </div>
     </div>
     
@@ -403,13 +406,12 @@
         <!-- Stats Dashboard -->
         <div class="stats-dashboard" id="statsDashboard">
             <div class="stat-card"><i class="fas fa-users"></i><div class="stat-number" id="totalMembers">0</div><div class="stat-label">Total Members</div></div>
-            <div class="stat-card"><i class="fas fa-male"></i><div class="stat-number" id="maleCount">0</div><div class="stat-label">Male</div></div>
-            <div class="stat-card"><i class="fas fa-female"></i><div class="stat-number" id="femaleCount">0</div><div class="stat-label">Female</div></div>
             <div class="stat-card"><i class="fas fa-chart-line"></i><div class="stat-number" id="weeklyCount">0</div><div class="stat-label">This Week</div></div>
             <div class="stat-card"><i class="fas fa-star"></i><div class="stat-number" id="newVisitors">0</div><div class="stat-label">New Visitors</div></div>
+            <div class="stat-card"><i class="fas fa-calendar-week"></i><div class="stat-number" id="totalAttendance">0</div><div class="stat-label">Total Attendance</div></div>
         </div>
         
-        <!-- Tabs Content -->
+        <!-- Register Tab -->
         <div id="register-tab" class="tab-content active">
             <div class="two-columns">
                 <div class="form-card">
@@ -421,19 +423,19 @@
                         <div class="form-group"><label>Sex *</label><select id="sex"><option value="">Select</option><option value="Male">Male</option><option value="Female">Female</option></select></div>
                         <div class="form-group"><label>Phone Number *</label><input type="tel" id="phone" required></div>
                         <div class="form-group"><label>Are you a first-time visitor?</label><select id="isNewVisitor"><option value="No">No, I'm a regular member</option><option value="Yes">Yes, this is my first time</option></select></div>
-                        <button type="submit" class="submit-btn" id="submitBtn">✍️ Submit Registration</button>
+                        <button type="submit" class="submit-btn">✍️ Submit Registration</button>
                     </form>
                     <div id="messageDiv"></div>
                 </div>
                 
                 <div class="info-card">
-                    <h3 class="card-title">✨ Welcome Message</h3>
+                    <h3 class="card-title">✨ Welcome to CSOC Oke Ayo</h3>
                     <p>We are glad to have you worship with us at CSOC Oke Ayo Osu Model Parish.</p>
                     <ul style="margin-top: 1rem; list-style: none;">
                         <li>✓ Keep track of your attendance history</li>
                         <li>✓ Register for church events</li>
-                        <li>✓ Get SMS reminders (coming soon)</li>
                         <li>✓ Use QR code for quick check-in</li>
+                        <li>✓ View weekly attendance trends</li>
                     </ul>
                     <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
                         <p style="font-size: 0.8rem;">📖 "Let us not give up meeting together" — Hebrews 10:25</p>
@@ -442,24 +444,40 @@
             </div>
         </div>
         
-        <div id="events-tab" class="tab-content">
-            <div class="events-card">
-                <h3 class="card-title">📅 Upcoming Church Events</h3>
-                <div id="eventsList"></div>
-                <div style="margin-top: 1rem;">
-                    <h4>➕ Suggest an Event</h4>
-                    <input type="text" id="newEventName" placeholder="Event Name" style="width: 70%; padding: 8px; border-radius: 20px; border: 1px solid #ddd;">
-                    <input type="date" id="newEventDate" style="padding: 8px; border-radius: 20px; border: 1px solid #ddd;">
-                    <button onclick="addEvent()" style="margin-top: 0.5rem; background: #1a3c2c; color: white; border: none; padding: 8px 16px; border-radius: 20px;">Add Event</button>
+        <!-- About Us Tab -->
+        <div id="about-tab" class="tab-content">
+            <div class="about-card">
+                <h3 class="card-title">📖 About Us</h3>
+                <div class="about-text">
+                    <p>Welcome to The Sacred Cherubim & Seraphim Church of Nigeria, Oke Ayo Osu Model Parish, a place of worship, prayer, holiness, and divine encounter. We are a Christ-centered church committed to proclaiming the Gospel of Jesus Christ, nurturing spiritual growth, and leading souls into a deeper relationship with God.</p>
+                    <p style="margin-top: 1rem;">Guided by the power of the Holy Spirit and the teachings of the Holy Bible, we uphold the values of faith, righteousness, love, and service. Through fervent prayers, inspiring worship, biblical teachings, and community outreach, we strive to bring hope, healing, and transformation to individuals, families, and society.</p>
+                    <p style="margin-top: 1rem;">Our mission is to raise disciples of Christ, win souls for God's Kingdom, and create an atmosphere where everyone can experience God's presence and power. We welcome all people regardless of background to join us in worship as one family united in faith and love.</p>
+                    <div class="about-quote">
+                        "A place where prayers are answered, lives are transformed, and God is glorified."
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem; padding: 1rem; background: #f5f0e8; border-radius: 16px;">
+                    <p><strong>📞 Contact Us:</strong> 08162632204, 07035545877</p>
+                    <p><strong>📧 Email:</strong> csokeayomodelparishosuosunstat@gmail.com</p>
+                    <p><strong>📍 Location:</strong> Oke Ayo Osu, Osun State, Nigeria</p>
                 </div>
             </div>
         </div>
         
+        <!-- Events Tab -->
+        <div id="events-tab" class="tab-content">
+            <div class="events-card">
+                <h3 class="card-title">📅 Upcoming Church Events</h3>
+                <div id="eventsList"></div>
+            </div>
+        </div>
+        
+        <!-- History Tab -->
         <div id="history-tab" class="tab-content">
             <div class="history-card">
                 <h3 class="card-title">📊 My Attendance History</h3>
                 <p>Enter your phone number to view your attendance records:</p>
-                <div style="display: flex; gap: 0.5rem; margin: 1rem 0;">
+                <div style="display: flex; gap: 0.5rem; margin: 1rem 0; flex-wrap: wrap;">
                     <input type="tel" id="searchPhone" placeholder="Enter your phone number" style="flex:1; padding: 10px; border-radius: 20px; border: 1px solid #ddd;">
                     <button onclick="searchMyHistory()" style="background: #1a3c2c; color: white; border: none; padding: 8px 20px; border-radius: 20px;">Search</button>
                 </div>
@@ -467,6 +485,7 @@
             </div>
         </div>
         
+        <!-- QR Tab -->
         <div id="qr-tab" class="tab-content">
             <div class="qr-section">
                 <h3 class="card-title">📱 Quick Check-in with QR Code</h3>
@@ -483,19 +502,24 @@
         </div>
     </div>
     
+    <!-- Secret Admin Access (Double-click bottom right corner) -->
+    <div class="secret-admin" id="secretAdminBtn" ondblclick="showAdminPanel()"></div>
+    
     <!-- Admin Panel (Hidden) -->
-    <div id="adminPanel" class="admin-panel">
+    <div id="adminPanel" class="admin-overlay">
         <div class="admin-container">
             <button class="close-admin" onclick="closeAdminPanel()">✖ Close</button>
-            <h2>🔐 Admin Dashboard</h2>
+            <h2>🔐 Church Admin Dashboard</h2>
             <div id="adminLoginArea">
-                <input type="password" id="adminPassword" placeholder="Enter Admin Password" style="padding: 10px; margin: 1rem 0;">
+                <input type="password" id="adminPassword" placeholder="Enter Admin Password" style="padding: 10px; margin: 1rem 0; width: 100%; max-width: 300px;">
                 <button onclick="adminLogin()" style="background: #1a3c2c; color: white; border: none; padding: 10px 20px;">Login</button>
                 <div id="adminLoginMsg"></div>
             </div>
             <div id="adminDataArea" style="display: none;">
-                <button onclick="exportAllData()" style="background: #27ae60; margin: 1rem 0;">📎 Export All Data (CSV)</button>
-                <button onclick="clearAllData()" style="background: #e74c3c; margin: 1rem 0; margin-left: 0.5rem;">🗑️ Clear All Data</button>
+                <div style="margin: 1rem 0;">
+                    <button onclick="exportAllData()" style="background: #27ae60; padding: 10px 20px;">📎 Export All Data (CSV)</button>
+                    <button onclick="clearAllData()" style="background: #e74c3c; padding: 10px 20px; margin-left: 0.5rem;">🗑️ Clear All Data</button>
+                </div>
                 <div style="overflow-x: auto;">
                     <table id="adminTable">
                         <thead><tr><th>#</th><th>Date</th><th>First Name</th><th>Second Name</th><th>Surname</th><th>Sex</th><th>Phone</th><th>New Visitor</th></tr></thead>
@@ -537,9 +561,9 @@
             const stored = localStorage.getItem(EVENTS_KEY);
             if (stored) return JSON.parse(stored);
             return [
-                { name: "Sunday Service", date: "Every Sunday", id: 1 },
-                { name: "Bible Study", date: "Every Wednesday", id: 2 },
-                { name: "Prayer Vigil", date: "Every Friday", id: 3 }
+                { name: "Sunday Service", date: "Every Sunday (9:00 AM - 2:00 PM)", id: 1 },
+                { name: "Bible Study", date: "Every Wednesday (5:00 PM)", id: 2 },
+                { name: "Prayer Meeting/Night Vigil", date: "Every Friday (10:00 PM)", id: 3 }
             ];
         }
         
@@ -548,7 +572,12 @@
             displayEvents();
         }
         
-        // Add registration
+        function getWeekNumber(date) {
+            const start = new Date(date.getFullYear(), 0, 1);
+            const days = Math.floor((date - start) / (24 * 60 * 60 * 1000));
+            return Math.ceil((days + start.getDay() + 1) / 7);
+        }
+        
         async function addRegistration(data) {
             const members = loadData();
             const newMember = {
@@ -561,38 +590,25 @@
             members.unshift(newMember);
             saveData(members);
             
-            // Also send to Google Sheets
             try {
                 await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
             } catch(e) { console.log("Google sheets sync optional"); }
             return newMember;
         }
         
-        function getWeekNumber(date) {
-            const start = new Date(date.getFullYear(), 0, 1);
-            const days = Math.floor((date - start) / (24 * 60 * 60 * 1000));
-            return Math.ceil((days + start.getDay() + 1) / 7);
-        }
-        
-        // Update Dashboard Stats
         function updateStats() {
             const members = loadData();
             const total = members.length;
-            const male = members.filter(m => m.sex === 'Male').length;
-            const female = members.filter(m => m.sex === 'Female').length;
-            
             const thisWeek = getWeekNumber(new Date());
             const weekly = members.filter(m => m.week === thisWeek).length;
             const newVisitors = members.filter(m => m.isNewVisitor === 'Yes').length;
             
             document.getElementById('totalMembers').textContent = total;
-            document.getElementById('maleCount').textContent = male;
-            document.getElementById('femaleCount').textContent = female;
             document.getElementById('weeklyCount').textContent = weekly;
             document.getElementById('newVisitors').textContent = newVisitors;
+            document.getElementById('totalAttendance').textContent = total;
         }
         
-        // Update Chart
         function updateChart() {
             const members = loadData();
             const last6Weeks = [];
@@ -615,7 +631,6 @@
             }
         }
         
-        // Display Events
         function displayEvents() {
             const events = loadEvents();
             const container = document.getElementById('eventsList');
@@ -629,42 +644,47 @@
         }
         
         function registerForEvent(eventName) {
-            alert(`You've registered for "${eventName}". We'll send you reminders!`);
+            alert(`✅ You've registered for "${eventName}". God bless you!`);
         }
         
-        function addEvent() {
-            const name = document.getElementById('newEventName').value;
-            const date = document.getElementById('newEventDate').value;
-            if (!name || !date) { alert("Please fill both fields"); return; }
-            const events = loadEvents();
-            events.push({ name, date, id: Date.now() });
-            saveEvents(events);
-            document.getElementById('newEventName').value = '';
-            document.getElementById('newEventDate').value = '';
-        }
-        
-        // Personal History Search
         function searchMyHistory() {
             const phone = document.getElementById('searchPhone').value.trim();
             const members = loadData();
             const personal = members.filter(m => m.phone === phone);
             const container = document.getElementById('personalHistory');
             if (personal.length === 0) {
-                container.innerHTML = "<p>No records found for this phone number.</p>";
+                container.innerHTML = "<p>📭 No records found for this phone number. Please register first.</p>";
                 return;
             }
             container.innerHTML = `
                 <div class="history-table">
-                    <table><thead><tr><th>Date</th><th>First Name</th><th>Surname</th><th>Status</th></tr></thead><tbody>
-                    ${personal.map(m => `<tr><td>${m.date}</td><td>${m.firstName}</td><td>${m.surname}</td><td>${m.isNewVisitor === 'Yes' ? '⭐ New Visitor' : 'Regular'}</td></tr>`).join('')}
-                    </tbody></table>
+                    <table>
+                        <thead><tr><th>Date</th><th>First Name</th><th>Surname</th><th>Status</th></tr></thead>
+                        <tbody>
+                            ${personal.map(m => `<tr><td>${m.date}</td><td>${m.firstName}</td><td>${m.surname}</td><td>${m.isNewVisitor === 'Yes' ? '⭐ New Visitor' : 'Regular Member'}</td></tr>`).join('')}
+                        </tbody>
+                    </table>
                 </div>
             `;
         }
         
-        // Admin Functions
-        function showAdminPanel() { document.getElementById('adminPanel').style.display = 'block'; }
-        function closeAdminPanel() { document.getElementById('adminPanel').style.display = 'none'; }
+        // Tab switching
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+        
+        // Admin Functions - SECRET ACCESS ONLY
+        function showAdminPanel() {
+            document.getElementById('adminPanel').style.display = 'block';
+        }
+        
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('adminLoginArea').style.display = 'block';
+            document.getElementById('adminDataArea').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+        }
         
         function adminLogin() {
             const pwd = document.getElementById('adminPassword').value;
@@ -673,15 +693,29 @@
                 document.getElementById('adminDataArea').style.display = 'block';
                 loadAdminTable();
             } else {
-                document.getElementById('adminLoginMsg').innerHTML = '<div class="message error">Wrong password!</div>';
+                document.getElementById('adminLoginMsg').innerHTML = '<div class="message error">❌ Wrong password! Access denied.</div>';
+                setTimeout(() => document.getElementById('adminLoginMsg').innerHTML = '', 2000);
             }
         }
         
         function loadAdminTable() {
             const members = loadData();
             const tbody = document.getElementById('adminTableBody');
+            if (members.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">No records found</td></tr>';
+                return;
+            }
             tbody.innerHTML = members.map((m, idx) => `
-                <tr><td>${idx+1}</td><td>${m.date || m.registeredAt || m.timestamp?.split('T')[0]}</td><td>${m.firstName}</td><td>${m.secondName}</td><td>${m.surname}</td><td>${m.sex}</td><td>${m.phone}</td><td>${m.isNewVisitor === 'Yes' ? 'Yes' : 'No'}</td></tr>
+                <tr>
+                    <td>${idx+1}</td>
+                    <td>${m.date || m.timestamp?.split('T')[0] || ''}</td>
+                    <td>${m.firstName || ''}</td>
+                    <td>${m.secondName || ''}</td>
+                    <td>${m.surname || ''}</td>
+                    <td>${m.sex || ''}</td>
+                    <td>${m.phone || ''}</td>
+                    <td>${m.isNewVisitor === 'Yes' ? 'Yes' : 'No'}</td>
+                </tr>
             `).join('');
         }
         
@@ -694,24 +728,18 @@
             const blob = new Blob([csv], { type: 'text/csv' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = `church_attendance_${new Date().toISOString().split('T')[0]}.csv`;
+            link.download = `csoc_attendance_${new Date().toISOString().split('T')[0]}.csv`;
             link.click();
         }
         
         function clearAllData() {
-            if (confirm("⚠️ WARNING: This will delete ALL attendance records. Are you sure?")) {
+            if (confirm("⚠️ WARNING: This will delete ALL attendance records. This cannot be undone. Are you sure?")) {
                 localStorage.removeItem(STORAGE_KEY);
                 updateStats();
                 updateChart();
                 loadAdminTable();
-                alert("All data cleared!");
+                alert("✅ All data has been cleared!");
             }
-        }
-        
-        // Tab switching
-        function showTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
         }
         
         // Form Submission
@@ -728,13 +756,13 @@
                 registeredAt: new Date().toLocaleString()
             };
             if (!formData.firstName || !formData.secondName || !formData.surname || !formData.sex || !formData.phone) {
-                document.getElementById('messageDiv').innerHTML = '<div class="message error">Please fill all fields</div>';
+                document.getElementById('messageDiv').innerHTML = '<div class="message error">❌ Please fill all fields</div>';
                 return;
             }
             await addRegistration(formData);
-            document.getElementById('messageDiv').innerHTML = '<div class="message success">✅ Registration Successful! Welcome to CSOC!</div>';
+            document.getElementById('messageDiv').innerHTML = '<div class="message success">✅ Registration Successful! Welcome to CSOC Oke Ayo Osu Parish. God bless you!</div>';
             document.getElementById('registerForm').reset();
-            setTimeout(() => document.getElementById('messageDiv').innerHTML = '', 3000);
+            setTimeout(() => document.getElementById('messageDiv').innerHTML = '', 4000);
         });
         
         // Generate QR Code
@@ -748,6 +776,9 @@
         displayEvents();
         updateStats();
         updateChart();
+        
+        // Secret Admin Access Instructions (console only)
+        console.log("🔐 Admin Access: Double-click the bottom-right corner of the page to open admin panel. Password: csoc2025");
     </script>
 </body>
 </html>
