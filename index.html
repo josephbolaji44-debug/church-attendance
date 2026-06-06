@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>CSOC Oke Ayo Osu Model Parish | Official Website</title>
-    <meta name="description" content="Official website of The Sacred Cherubim & Seraphim Church of Nigeria, Oke Ayo Osu Model Parish.">
+    <title>CSOC Oke Ayo Osu | Professional Church Management System</title>
+    <meta name="description" content="Complete church management system for CSOC Oke Ayo Osu Model Parish">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -17,25 +19,25 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f5f0e8;
+            background: #f0f2f5;
             color: #2c2c2c;
         }
         
+        /* Top Banner */
         .top-banner {
-            background: #8B4513;
+            background: linear-gradient(135deg, #8B4513, #A0522D);
             color: #FFD700;
             text-align: center;
             padding: 8px;
             font-size: 0.8rem;
+            letter-spacing: 1px;
         }
         
-        /* Header with YOUR corrected background image URL */
+        /* Header */
         .main-header {
-            background: linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.60)), url('https://raw.githubusercontent.com/josephbolaji44-debug/church-attendance/main/church-bg.PNG');
-            background-size: cover;
-            background-position: center 30%;
+            background: linear-gradient(135deg, #1a3c2c 0%, #2d5a3f 100%);
             color: white;
-            padding: 2.5rem 1rem;
+            padding: 2rem 1rem;
             text-align: center;
             position: relative;
         }
@@ -50,33 +52,20 @@
             justify-content: center;
             margin: 0 auto 1rem;
             font-size: 40px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .main-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             letter-spacing: 1px;
-            line-height: 1.4;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
         .main-header h2 {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 400;
-            margin-top: 8px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         
-        .main-header .contact-header {
-            margin-top: 12px;
-            font-size: 0.85rem;
-            background: rgba(0,0,0,0.5);
-            display: inline-block;
-            padding: 6px 15px;
-            border-radius: 40px;
-        }
-        
+        /* Navigation */
         .nav-bar {
             background: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -88,8 +77,8 @@
         .nav-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            padding: 1rem;
+            gap: 1.2rem;
+            padding: 0.8rem;
             flex-wrap: wrap;
         }
         
@@ -97,6 +86,7 @@
             text-decoration: none;
             color: #2d5a3f;
             font-weight: 500;
+            font-size: 0.9rem;
             transition: 0.3s;
             cursor: pointer;
         }
@@ -106,48 +96,55 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
+            padding: 1.5rem;
         }
         
-        .welcome-section {
-            text-align: center;
+        /* Stats Dashboard */
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
             margin-bottom: 2rem;
         }
         
-        .welcome-section h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+        .stat-card {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card i {
+            font-size: 2rem;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
             color: #1a3c2c;
         }
         
-        .service-times {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
         }
         
-        .service-card {
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            min-width: 180px;
-        }
-        
-        .service-card strong {
-            color: #8B4513;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
+        /* Two Column Layout */
         .two-columns {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
         
         @media (max-width: 768px) {
@@ -156,101 +153,141 @@
             }
         }
         
-        .form-card {
+        /* Form Card */
+        .form-card, .info-card, .events-card, .history-card {
             background: white;
             border-radius: 24px;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
         
-        .form-title {
+        .card-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #1a3c2c;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #FFD700;
-            display: inline-block;
+            margin-bottom: 1.2rem;
+            border-left: 4px solid #FFD700;
+            padding-left: 0.8rem;
         }
         
         .form-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
         
         .form-group label {
             display: block;
             font-weight: 500;
-            margin-bottom: 0.4rem;
-            color: #3d3d3d;
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
         }
         
         .form-group input, .form-group select {
             width: 100%;
-            padding: 12px 16px;
+            padding: 10px 14px;
             border: 2px solid #e8e8e8;
             border-radius: 12px;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-        
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: #FFD700;
-            box-shadow: 0 0 0 3px rgba(255,215,0,0.2);
+            font-size: 0.9rem;
         }
         
         .submit-btn {
-            background: linear-gradient(135deg, #1a3c2c 0%, #2d5a3f 100%);
+            background: linear-gradient(135deg, #1a3c2c, #2d5a3f);
             color: white;
             border: none;
-            padding: 14px 28px;
+            padding: 12px;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
             width: 100%;
-            transition: 0.3s;
+            cursor: pointer;
         }
         
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(26,60,44,0.3);
+        /* QR Code Section */
+        .qr-section {
+            text-align: center;
+            padding: 1rem;
         }
         
-        .submit-btn:disabled {
-            opacity: 0.7;
-            transform: none;
+        .qr-code {
+            background: white;
+            padding: 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 1rem 0;
         }
         
-        .info-card {
-            background: linear-gradient(135deg, #1a3c2c 0%, #2d5a3f 100%);
-            border-radius: 24px;
-            padding: 2rem;
-            color: white;
-        }
-        
-        .info-card h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .info-card ul {
-            list-style: none;
-            margin-top: 1rem;
-        }
-        
-        .info-card li {
+        /* Events List */
+        .event-item {
+            background: #f8f9fa;
+            padding: 0.8rem;
+            border-radius: 12px;
             margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .info-card li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #FFD700;
+        .event-name {
+            font-weight: 600;
+            color: #1a3c2c;
+        }
+        
+        .event-date {
+            font-size: 0.7rem;
+            color: #8B4513;
+        }
+        
+        .register-event-btn {
+            background: #FFD700;
+            color: #1a3c2c;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.7rem;
+        }
+        
+        /* Attendance History Table */
+        .history-table {
+            width: 100%;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            font-size: 0.85rem;
+        }
+        
+        th {
+            background: #f5f0e8;
+            color: #1a3c2c;
+        }
+        
+        /* Chart Container */
+        .chart-container {
+            margin-top: 1.5rem;
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem;
+        }
+        
+        canvas {
+            max-height: 300px;
+        }
+        
+        /* Footer */
+        .main-footer {
+            background: #1a1a1a;
+            color: #999;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.8rem;
         }
         
         .message {
@@ -258,325 +295,459 @@
             padding: 0.8rem;
             border-radius: 12px;
             text-align: center;
-            font-weight: 500;
         }
         
         .success {
             background: #e8f5e9;
             color: #2e7d32;
-            border-left: 4px solid #4caf50;
         }
         
         .error {
             background: #ffebee;
             color: #c62828;
-            border-left: 4px solid #f44336;
         }
         
         .loading {
             background: #e3f2fd;
             color: #1565c0;
-            border-left: 4px solid #2196f3;
         }
         
-        .about-section {
-            margin-top: 3rem;
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e8e8e8;
+        }
+        
+        .tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .tab.active {
+            color: #1a3c2c;
+            border-bottom: 3px solid #FFD700;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Admin Panel (Hidden by default) */
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .admin-container {
+            max-width: 1400px;
+            margin: 2rem auto;
             background: white;
             border-radius: 24px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
         
-        .about-section h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: #1a3c2c;
-            margin-bottom: 1rem;
-            border-left: 4px solid #FFD700;
-            padding-left: 1rem;
-        }
-        
-        .about-section p {
-            line-height: 1.8;
-            color: #444;
-            margin-bottom: 1rem;
-        }
-        
-        .about-quote {
-            font-style: italic;
-            color: #8B4513;
-            font-weight: 500;
-            text-align: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 2px solid #FFD700;
-        }
-        
-        .contact-section {
-            margin-top: 2rem;
-            background: #1a3c2c;
-            border-radius: 24px;
-            padding: 2rem;
+        .close-admin {
+            float: right;
+            background: #e74c3c;
             color: white;
-            text-align: center;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
         }
         
-        .contact-section h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #FFD700;
-        }
-        
-        .contact-details {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255,255,255,0.1);
-            padding: 10px 20px;
-            border-radius: 50px;
-        }
-        
-        .contact-item a {
-            color: white;
-            text-decoration: none;
-        }
-        
-        .contact-item a:hover {
-            color: #FFD700;
-        }
-        
-        .main-footer {
-            background: #1a1a1a;
-            color: #999;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .form-card, .info-card, .about-section, .contact-section {
-            animation: fadeIn 0.6s ease-out;
-        }
-        
-        html {
-            scroll-behavior: smooth;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stat-number { font-size: 1.5rem; }
+            th, td { font-size: 0.7rem; padding: 0.5rem; }
         }
     </style>
 </head>
 <body>
     <div class="top-banner">
-        📍 Oke Ayo Osu, Osun State, Nigeria | ✝️ The House of Prayer for All Nations
+        📍 Oke Ayo Osu, Osun State | ✝️ The House of Prayer | 🙏 Register Your Attendance
     </div>
     
     <div class="main-header">
         <div class="logo">⛪</div>
         <h1>THE SACRED CHERUBIM & SERAPHIM CHURCH OF NIGERIA</h1>
-        <h2>ARAROMI OKE-AYO MODEL PARISH HEADQUARTERS,<br>OKE-AYO DCC, OSU, OSUN STATE.</h2>
-        <div class="contact-header">
-            📞 08162632204 | 07035545877
-        </div>
+        <h2>ARAROMI OKE-AYO MODEL PARISH HEADQUARTERS, OKE-AYO DCC, OSU, OSUN STATE</h2>
     </div>
     
     <div class="nav-bar">
         <div class="nav-links">
-            <a href="#home">🏠 Home</a>
-            <a href="#about">📖 About Us</a>
-            <a href="#services">📅 Service Times</a>
-            <a href="#register">📋 Register Attendance</a>
-            <a href="#contact">📞 Contact</a>
+            <a onclick="showTab('register-tab')">📋 Register</a>
+            <a onclick="showTab('events-tab')">📅 Events</a>
+            <a onclick="showTab('history-tab')">📊 My History</a>
+            <a onclick="showTab('qr-tab')">📱 QR Code</a>
+            <a onclick="showAdminPanel()">🔐 Admin</a>
         </div>
     </div>
     
-    <div class="container" id="home">
-        <div class="welcome-section">
-            <h3>Welcome to Oke Ayo Osu Parish</h3>
-            <p style="margin-top: 0.5rem; color: #666;">A place of worship, prayer, holiness, and divine encounter</p>
-            <div class="service-times" id="services">
-                <div class="service-card"><strong>🕊️ Sunday Service</strong>9:00 AM - 2:00 PM</div>
-                <div class="service-card"><strong>📖 Bible Study</strong>Wednesday 5:00 PM</div>
-                <div class="service-card"><strong>🙏 Prayer Meeting/Night Vigil</strong>Friday 10:00 PM</div>
-            </div>
+    <div class="container">
+        <!-- Stats Dashboard -->
+        <div class="stats-dashboard" id="statsDashboard">
+            <div class="stat-card"><i class="fas fa-users"></i><div class="stat-number" id="totalMembers">0</div><div class="stat-label">Total Members</div></div>
+            <div class="stat-card"><i class="fas fa-male"></i><div class="stat-number" id="maleCount">0</div><div class="stat-label">Male</div></div>
+            <div class="stat-card"><i class="fas fa-female"></i><div class="stat-number" id="femaleCount">0</div><div class="stat-label">Female</div></div>
+            <div class="stat-card"><i class="fas fa-chart-line"></i><div class="stat-number" id="weeklyCount">0</div><div class="stat-label">This Week</div></div>
+            <div class="stat-card"><i class="fas fa-star"></i><div class="stat-number" id="newVisitors">0</div><div class="stat-label">New Visitors</div></div>
         </div>
         
-        <div class="two-columns" id="register">
-            <div class="form-card">
-                <h3 class="form-title">📋 Register Your Attendance</h3>
-                <p style="color: #666; margin-bottom: 1.5rem;">Fill in your details below to mark your attendance</p>
+        <!-- Tabs Content -->
+        <div id="register-tab" class="tab-content active">
+            <div class="two-columns">
+                <div class="form-card">
+                    <h3 class="card-title">📋 Register Your Attendance</h3>
+                    <form id="registerForm">
+                        <div class="form-group"><label>First Name *</label><input type="text" id="firstName" required></div>
+                        <div class="form-group"><label>Second Name *</label><input type="text" id="secondName" required></div>
+                        <div class="form-group"><label>Surname *</label><input type="text" id="surname" required></div>
+                        <div class="form-group"><label>Sex *</label><select id="sex"><option value="">Select</option><option value="Male">Male</option><option value="Female">Female</option></select></div>
+                        <div class="form-group"><label>Phone Number *</label><input type="tel" id="phone" required></div>
+                        <div class="form-group"><label>Are you a first-time visitor?</label><select id="isNewVisitor"><option value="No">No, I'm a regular member</option><option value="Yes">Yes, this is my first time</option></select></div>
+                        <button type="submit" class="submit-btn" id="submitBtn">✍️ Submit Registration</button>
+                    </form>
+                    <div id="messageDiv"></div>
+                </div>
                 
-                <form id="registerForm">
-                    <div class="form-group">
-                        <label>First Name *</label>
-                        <input type="text" id="firstName" required placeholder="Enter your first name">
+                <div class="info-card">
+                    <h3 class="card-title">✨ Welcome Message</h3>
+                    <p>We are glad to have you worship with us at CSOC Oke Ayo Osu Model Parish.</p>
+                    <ul style="margin-top: 1rem; list-style: none;">
+                        <li>✓ Keep track of your attendance history</li>
+                        <li>✓ Register for church events</li>
+                        <li>✓ Get SMS reminders (coming soon)</li>
+                        <li>✓ Use QR code for quick check-in</li>
+                    </ul>
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
+                        <p style="font-size: 0.8rem;">📖 "Let us not give up meeting together" — Hebrews 10:25</p>
                     </div>
-                    <div class="form-group">
-                        <label>Second Name *</label>
-                        <input type="text" id="secondName" required placeholder="Enter your middle name">
-                    </div>
-                    <div class="form-group">
-                        <label>Surname *</label>
-                        <input type="text" id="surname" required placeholder="Enter your surname">
-                    </div>
-                    <div class="form-group">
-                        <label>Sex *</label>
-                        <select id="sex" required>
-                            <option value="">Select Gender</option>
-                            <option value="Male">👨 Male</option>
-                            <option value="Female">👩 Female</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number *</label>
-                        <input type="tel" id="phone" required placeholder="e.g., 08012345678">
-                    </div>
-                    <button type="submit" class="submit-btn" id="submitBtn">✍️ Submit Registration</button>
-                </form>
-                <div id="messageDiv"></div>
-            </div>
-            
-            <div class="info-card">
-                <h4>✨ Why Register Your Attendance?</h4>
-                <ul>
-                    <li>Keep track of your fellowship records</li>
-                    <li>Receive church updates and announcements</li>
-                    <li>Get prayer requests and special notifications</li>
-                    <li>Be part of our growing church family</li>
-                    <li>Access to members-only events</li>
-                </ul>
-                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2);">
-                    <p style="font-size: 0.85rem;">📖 "Let us not give up meeting together, as some are in the habit of doing, but encouraging one another." — Hebrews 10:25</p>
                 </div>
             </div>
         </div>
         
-        <div class="about-section" id="about">
-            <h4>📖 About Us</h4>
-            <p>Welcome to The Sacred Cherubim & Seraphim Church of Nigeria, Oke Ayo Osu Model Parish, a place of worship, prayer, holiness, and divine encounter. We are a Christ-centered church committed to proclaiming the Gospel of Jesus Christ, nurturing spiritual growth, and leading souls into a deeper relationship with God.</p>
-            <p>Guided by the power of the Holy Spirit and the teachings of the Holy Bible, we uphold the values of faith, righteousness, love, and service. Through fervent prayers, inspiring worship, biblical teachings, and community outreach, we strive to bring hope, healing, and transformation to individuals, families, and society.</p>
-            <p>Our mission is to raise disciples of Christ, win souls for God's Kingdom, and create an atmosphere where everyone can experience God's presence and power. We welcome all people regardless of background to join us in worship as one family united in faith and love.</p>
-            <div class="about-quote">
-                "A place where prayers are answered, lives are transformed, and God is glorified."
+        <div id="events-tab" class="tab-content">
+            <div class="events-card">
+                <h3 class="card-title">📅 Upcoming Church Events</h3>
+                <div id="eventsList"></div>
+                <div style="margin-top: 1rem;">
+                    <h4>➕ Suggest an Event</h4>
+                    <input type="text" id="newEventName" placeholder="Event Name" style="width: 70%; padding: 8px; border-radius: 20px; border: 1px solid #ddd;">
+                    <input type="date" id="newEventDate" style="padding: 8px; border-radius: 20px; border: 1px solid #ddd;">
+                    <button onclick="addEvent()" style="margin-top: 0.5rem; background: #1a3c2c; color: white; border: none; padding: 8px 16px; border-radius: 20px;">Add Event</button>
+                </div>
             </div>
         </div>
         
-        <div class="contact-section" id="contact">
-            <h4>📞 Contact Us</h4>
-            <div class="contact-details">
-                <div class="contact-item">
-                    <span>📧</span>
-                    <a href="mailto:csokeayomodelparishosuosunstat@gmail.com">csokeayomodelparishosuosunstat@gmail.com</a>
+        <div id="history-tab" class="tab-content">
+            <div class="history-card">
+                <h3 class="card-title">📊 My Attendance History</h3>
+                <p>Enter your phone number to view your attendance records:</p>
+                <div style="display: flex; gap: 0.5rem; margin: 1rem 0;">
+                    <input type="tel" id="searchPhone" placeholder="Enter your phone number" style="flex:1; padding: 10px; border-radius: 20px; border: 1px solid #ddd;">
+                    <button onclick="searchMyHistory()" style="background: #1a3c2c; color: white; border: none; padding: 8px 20px; border-radius: 20px;">Search</button>
                 </div>
-                <div class="contact-item">
-                    <span>📱</span>
-                    <a href="tel:08033621563">08033621563</a>
-                </div>
-                <div class="contact-item">
-                    <span>🏠</span>
-                    <span>Oke Ayo Osu, Osun State, Nigeria</span>
-                </div>
+                <div id="personalHistory"></div>
             </div>
-            <div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8;">
-                <p>📞 Church Headquarters: 08162632204, 07035545877</p>
+        </div>
+        
+        <div id="qr-tab" class="tab-content">
+            <div class="qr-section">
+                <h3 class="card-title">📱 Quick Check-in with QR Code</h3>
+                <p>Scan this QR code to quickly register your attendance</p>
+                <div class="qr-code" id="qrcode"></div>
+                <p style="margin-top: 1rem; font-size: 0.8rem; color: #666;">Save this QR code on your phone for faster check-in next time!</p>
+            </div>
+        </div>
+        
+        <!-- Weekly Trends Chart -->
+        <div class="chart-container">
+            <h3 class="card-title">📈 Weekly Attendance Trends</h3>
+            <canvas id="attendanceChart"></canvas>
+        </div>
+    </div>
+    
+    <!-- Admin Panel (Hidden) -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-container">
+            <button class="close-admin" onclick="closeAdminPanel()">✖ Close</button>
+            <h2>🔐 Admin Dashboard</h2>
+            <div id="adminLoginArea">
+                <input type="password" id="adminPassword" placeholder="Enter Admin Password" style="padding: 10px; margin: 1rem 0;">
+                <button onclick="adminLogin()" style="background: #1a3c2c; color: white; border: none; padding: 10px 20px;">Login</button>
+                <div id="adminLoginMsg"></div>
+            </div>
+            <div id="adminDataArea" style="display: none;">
+                <button onclick="exportAllData()" style="background: #27ae60; margin: 1rem 0;">📎 Export All Data (CSV)</button>
+                <button onclick="clearAllData()" style="background: #e74c3c; margin: 1rem 0; margin-left: 0.5rem;">🗑️ Clear All Data</button>
+                <div style="overflow-x: auto;">
+                    <table id="adminTable">
+                        <thead><tr><th>#</th><th>Date</th><th>First Name</th><th>Second Name</th><th>Surname</th><th>Sex</th><th>Phone</th><th>New Visitor</th></tr></thead>
+                        <tbody id="adminTableBody"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
     
     <div class="main-footer">
-        <p>THE SACRED CHERUBIM & SERAPHIM CHURCH OF NIGERIA</p>
-        <p>Araromi Oke-Ayo Model Parish Headquarters, Oke-Ayo DCC, Osu, Osun State.</p>
-        <p style="font-size: 0.7rem; margin-top: 0.5rem;">© 2024 All Rights Reserved | Powered by Faith</p>
+        <p>THE SACRED CHERUBIM & SERAPHIM CHURCH OF NIGERIA - Oke Ayo Osu Model Parish</p>
+        <p>📞 08162632204, 07035545877 | 📧 csokeayomodelparishosuosunstat@gmail.com</p>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <script>
+        // ============ DATA STORAGE ============
+        const STORAGE_KEY = "CSOC_PRO_DB";
+        const EVENTS_KEY = "CSOC_EVENTS";
+        const ADMIN_PASSWORD = "csoc2025";
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxvfr55dPPx3crp2be--_Tgirr3T9xqqiAUeWNIGsCpjJlqBcJFLErO5-HMgY2DQP6i/exec";
         
-        const form = document.getElementById('registerForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const messageDiv = document.getElementById('messageDiv');
-
-        function showMessage(msg, type) {
-            messageDiv.innerHTML = `<div class="message ${type}">${msg}</div>`;
-            setTimeout(() => {
-                if (messageDiv.innerHTML.includes(msg)) {
-                    messageDiv.innerHTML = "";
-                }
-            }, 6000);
+        let attendanceChart = null;
+        
+        function loadData() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) return JSON.parse(stored);
+            return [];
         }
-
-        async function submitToGoogleSheets(formData) {
-            try {
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-                return true;
-            } catch (error) {
-                console.error('Submission error:', error);
-                return false;
-            }
+        
+        function saveData(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            updateStats();
+            updateChart();
         }
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        
+        function loadEvents() {
+            const stored = localStorage.getItem(EVENTS_KEY);
+            if (stored) return JSON.parse(stored);
+            return [
+                { name: "Sunday Service", date: "Every Sunday", id: 1 },
+                { name: "Bible Study", date: "Every Wednesday", id: 2 },
+                { name: "Prayer Vigil", date: "Every Friday", id: 3 }
+            ];
+        }
+        
+        function saveEvents(events) {
+            localStorage.setItem(EVENTS_KEY, JSON.stringify(events));
+            displayEvents();
+        }
+        
+        // Add registration
+        async function addRegistration(data) {
+            const members = loadData();
+            const newMember = {
+                id: Date.now(),
+                ...data,
+                timestamp: new Date().toISOString(),
+                date: new Date().toLocaleDateString(),
+                week: getWeekNumber(new Date())
+            };
+            members.unshift(newMember);
+            saveData(members);
             
-            const firstName = document.getElementById('firstName').value.trim();
-            const secondName = document.getElementById('secondName').value.trim();
-            const surname = document.getElementById('surname').value.trim();
-            const sex = document.getElementById('sex').value;
-            const phone = document.getElementById('phone').value.trim();
-
-            if (!firstName || !secondName || !surname || !sex || !phone) {
-                showMessage('❌ Please fill in all fields', 'error');
+            // Also send to Google Sheets
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
+            } catch(e) { console.log("Google sheets sync optional"); }
+            return newMember;
+        }
+        
+        function getWeekNumber(date) {
+            const start = new Date(date.getFullYear(), 0, 1);
+            const days = Math.floor((date - start) / (24 * 60 * 60 * 1000));
+            return Math.ceil((days + start.getDay() + 1) / 7);
+        }
+        
+        // Update Dashboard Stats
+        function updateStats() {
+            const members = loadData();
+            const total = members.length;
+            const male = members.filter(m => m.sex === 'Male').length;
+            const female = members.filter(m => m.sex === 'Female').length;
+            
+            const thisWeek = getWeekNumber(new Date());
+            const weekly = members.filter(m => m.week === thisWeek).length;
+            const newVisitors = members.filter(m => m.isNewVisitor === 'Yes').length;
+            
+            document.getElementById('totalMembers').textContent = total;
+            document.getElementById('maleCount').textContent = male;
+            document.getElementById('femaleCount').textContent = female;
+            document.getElementById('weeklyCount').textContent = weekly;
+            document.getElementById('newVisitors').textContent = newVisitors;
+        }
+        
+        // Update Chart
+        function updateChart() {
+            const members = loadData();
+            const last6Weeks = [];
+            const currentWeek = getWeekNumber(new Date());
+            for (let i = 5; i >= 0; i--) {
+                last6Weeks.push(currentWeek - i);
+            }
+            const weeklyCounts = last6Weeks.map(week => members.filter(m => m.week === week).length);
+            
+            if (attendanceChart) {
+                attendanceChart.data.datasets[0].data = weeklyCounts;
+                attendanceChart.update();
+            } else {
+                const ctx = document.getElementById('attendanceChart').getContext('2d');
+                attendanceChart = new Chart(ctx, {
+                    type: 'line',
+                    data: { labels: last6Weeks.map(w => `Week ${w}`), datasets: [{ label: 'Attendance', data: weeklyCounts, borderColor: '#1a3c2c', backgroundColor: 'rgba(26,60,44,0.1)', tension: 0.3, fill: true }] },
+                    options: { responsive: true, maintainAspectRatio: true }
+                });
+            }
+        }
+        
+        // Display Events
+        function displayEvents() {
+            const events = loadEvents();
+            const container = document.getElementById('eventsList');
+            if (!container) return;
+            container.innerHTML = events.map(event => `
+                <div class="event-item">
+                    <div><div class="event-name">${event.name}</div><div class="event-date">📅 ${event.date}</div></div>
+                    <button class="register-event-btn" onclick="registerForEvent('${event.name}')">Register</button>
+                </div>
+            `).join('');
+        }
+        
+        function registerForEvent(eventName) {
+            alert(`You've registered for "${eventName}". We'll send you reminders!`);
+        }
+        
+        function addEvent() {
+            const name = document.getElementById('newEventName').value;
+            const date = document.getElementById('newEventDate').value;
+            if (!name || !date) { alert("Please fill both fields"); return; }
+            const events = loadEvents();
+            events.push({ name, date, id: Date.now() });
+            saveEvents(events);
+            document.getElementById('newEventName').value = '';
+            document.getElementById('newEventDate').value = '';
+        }
+        
+        // Personal History Search
+        function searchMyHistory() {
+            const phone = document.getElementById('searchPhone').value.trim();
+            const members = loadData();
+            const personal = members.filter(m => m.phone === phone);
+            const container = document.getElementById('personalHistory');
+            if (personal.length === 0) {
+                container.innerHTML = "<p>No records found for this phone number.</p>";
                 return;
             }
-
-            if (phone.length < 8) {
-                showMessage('❌ Please enter a valid phone number', 'error');
-                return;
+            container.innerHTML = `
+                <div class="history-table">
+                    <table><thead><tr><th>Date</th><th>First Name</th><th>Surname</th><th>Status</th></tr></thead><tbody>
+                    ${personal.map(m => `<tr><td>${m.date}</td><td>${m.firstName}</td><td>${m.surname}</td><td>${m.isNewVisitor === 'Yes' ? '⭐ New Visitor' : 'Regular'}</td></tr>`).join('')}
+                    </tbody></table>
+                </div>
+            `;
+        }
+        
+        // Admin Functions
+        function showAdminPanel() { document.getElementById('adminPanel').style.display = 'block'; }
+        function closeAdminPanel() { document.getElementById('adminPanel').style.display = 'none'; }
+        
+        function adminLogin() {
+            const pwd = document.getElementById('adminPassword').value;
+            if (pwd === ADMIN_PASSWORD) {
+                document.getElementById('adminLoginArea').style.display = 'none';
+                document.getElementById('adminDataArea').style.display = 'block';
+                loadAdminTable();
+            } else {
+                document.getElementById('adminLoginMsg').innerHTML = '<div class="message error">Wrong password!</div>';
             }
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = '⏳ Submitting...';
-            showMessage('📤 Sending registration to church database...', 'loading');
-
+        }
+        
+        function loadAdminTable() {
+            const members = loadData();
+            const tbody = document.getElementById('adminTableBody');
+            tbody.innerHTML = members.map((m, idx) => `
+                <tr><td>${idx+1}</td><td>${m.date || m.registeredAt || m.timestamp?.split('T')[0]}</td><td>${m.firstName}</td><td>${m.secondName}</td><td>${m.surname}</td><td>${m.sex}</td><td>${m.phone}</td><td>${m.isNewVisitor === 'Yes' ? 'Yes' : 'No'}</td></tr>
+            `).join('');
+        }
+        
+        function exportAllData() {
+            const members = loadData();
+            let csv = "Date,First Name,Second Name,Surname,Sex,Phone,New Visitor\n";
+            members.forEach(m => {
+                csv += `"${m.date || m.timestamp}","${m.firstName}","${m.secondName}","${m.surname}","${m.sex}","${m.phone}","${m.isNewVisitor || 'No'}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `church_attendance_${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+        }
+        
+        function clearAllData() {
+            if (confirm("⚠️ WARNING: This will delete ALL attendance records. Are you sure?")) {
+                localStorage.removeItem(STORAGE_KEY);
+                updateStats();
+                updateChart();
+                loadAdminTable();
+                alert("All data cleared!");
+            }
+        }
+        
+        // Tab switching
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+        
+        // Form Submission
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
             const formData = {
-                firstName: firstName,
-                secondName: secondName,
-                surname: surname,
-                sex: sex,
-                phone: phone,
+                firstName: document.getElementById('firstName').value.trim(),
+                secondName: document.getElementById('secondName').value.trim(),
+                surname: document.getElementById('surname').value.trim(),
+                sex: document.getElementById('sex').value,
+                phone: document.getElementById('phone').value.trim(),
+                isNewVisitor: document.getElementById('isNewVisitor').value,
                 timestamp: new Date().toISOString(),
                 registeredAt: new Date().toLocaleString()
             };
-
-            const success = await submitToGoogleSheets(formData);
-            
-            if (success) {
-                showMessage('✅ Registration Successful! Welcome to CSOC Oke Ayo Osu Parish. God bless you!', 'success');
-                form.reset();
-            } else {
-                showMessage('❌ Registration Failed. Please check your connection and try again.', 'error');
+            if (!formData.firstName || !formData.secondName || !formData.surname || !formData.sex || !formData.phone) {
+                document.getElementById('messageDiv').innerHTML = '<div class="message error">Please fill all fields</div>';
+                return;
             }
-            
-            submitBtn.disabled = false;
-            submitBtn.textContent = '✍️ Submit Registration';
+            await addRegistration(formData);
+            document.getElementById('messageDiv').innerHTML = '<div class="message success">✅ Registration Successful! Welcome to CSOC!</div>';
+            document.getElementById('registerForm').reset();
+            setTimeout(() => document.getElementById('messageDiv').innerHTML = '', 3000);
         });
+        
+        // Generate QR Code
+        new QRCode(document.getElementById("qrcode"), {
+            text: window.location.href,
+            width: 200,
+            height: 200
+        });
+        
+        // Initial Load
+        displayEvents();
+        updateStats();
+        updateChart();
     </script>
 </body>
 </html>
