@@ -3,63 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>CSOC Oke Ayo Osu | Member Portal</title>
+    <title>CSOC Oke Ayo Osu Model Parish | Member Registration</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #f0f2f5 0%, #e8ecf1 100%); min-height: 100vh; }
-        .top-banner { background: linear-gradient(135deg, #8B4513, #A0522D); color: #FFD700; text-align: center; padding: 8px; font-size: 0.8rem; }
-        .main-header { background: linear-gradient(135deg, #1a3c2c 0%, #2d5a3f 100%); color: white; padding: 1.5rem 1rem; text-align: center; }
-        .logo { width: 70px; height: 70px; background: #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.8rem; font-size: 35px; }
-        .main-header h1 { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
-        .main-header h2 { font-size: 0.8rem; font-weight: 400; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
-        .auth-container { max-width: 500px; margin: 0 auto; }
-        .auth-card { background: white; border-radius: 32px; padding: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .auth-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #1a3c2c; text-align: center; margin-bottom: 1.5rem; }
-        .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; font-weight: 500; margin-bottom: 0.3rem; font-size: 0.85rem; }
-        .form-group input, .form-group select { width: 100%; padding: 12px 16px; border: 2px solid #e8e8e8; border-radius: 16px; font-size: 0.9rem; }
-        .btn-primary { background: linear-gradient(135deg, #1a3c2c, #2d5a3f); color: white; border: none; padding: 14px; border-radius: 40px; font-weight: 600; width: 100%; cursor: pointer; margin-top: 0.5rem; }
-        .btn-primary:hover { opacity: 0.9; }
-        .switch-auth { text-align: center; margin-top: 1rem; font-size: 0.85rem; }
-        .switch-auth a { color: #8B4513; cursor: pointer; text-decoration: none; }
-        .dashboard-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 2rem; background: white; padding: 1rem 1.5rem; border-radius: 20px; }
-        .welcome-text h3 { color: #1a3c2c; }
-        .logout-btn { background: #e74c3c; color: white; border: none; padding: 8px 20px; border-radius: 30px; cursor: pointer; }
-        .stats-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
-        .stat-card { background: white; padding: 1.2rem; border-radius: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
-        .stat-number { font-size: 2rem; font-weight: bold; color: #1a3c2c; }
-        .stat-label { font-size: 0.75rem; color: #666; }
-        .attendance-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .attendance-card { background: white; border-radius: 24px; padding: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s; }
-        .attendance-card:hover { transform: translateY(-5px); }
-        .card-icon { font-size: 3rem; margin-bottom: 0.5rem; }
-        .card-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #1a3c2c; margin-bottom: 0.5rem; }
-        .card-date { font-size: 0.8rem; color: #8B4513; margin-bottom: 1rem; }
-        .attendance-status { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; margin-bottom: 1rem; }
-        .status-present { background: #e8f5e9; color: #2e7d32; }
-        .status-absent { background: #ffebee; color: #c62828; }
-        .mark-btn { background: #FFD700; color: #1a3c2c; border: none; padding: 10px; border-radius: 30px; font-weight: 600; width: 100%; cursor: pointer; }
-        .mark-btn:disabled { background: #ccc; cursor: not-allowed; }
-        .history-section { background: white; border-radius: 24px; padding: 1.5rem; margin-top: 1.5rem; }
-        .history-table { width: 100%; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 0.8rem; text-align: left; border-bottom: 1px solid #eee; font-size: 0.85rem; }
-        th { background: #f5f0e8; color: #1a3c2c; }
-        .footer { background: #1a1a1a; color: #999; text-align: center; padding: 1.5rem; margin-top: 2rem; font-size: 0.8rem; }
-        .message { margin-top: 1rem; padding: 0.8rem; border-radius: 12px; text-align: center; }
-        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-        .hidden { display: none; }
-        @media (max-width: 768px) { .stat-number { font-size: 1.5rem; } .attendance-cards { grid-template-columns: 1fr; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        /* Admin Secret Access - Completely Hidden */
-        .secret-admin-access { display: none; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0f2f5 0%, #e8ecf1 100%);
+            min-height: 100vh;
+        }
+        
+        .top-banner {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: #FFD700;
+            text-align: center;
+            padding: 8px;
+            font-size: 0.8rem;
+        }
+        
+        .main-header {
+            background: linear-gradient(135deg, #1a3c2c 0%, #2d5a3f 100%);
+            color: white;
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 70px;
+            height: 70px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.8rem;
+            font-size: 35px;
+        }
+        
+        .main-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+        }
+        
+        .main-header h2 {
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .form-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #1a3c2c;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #FFD700;
+            padding-left: 1rem;
+            display: inline-block;
+            width: auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
+            color: #333;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8e8e8;
+            border-radius: 16px;
+            font-size: 0.9rem;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #1a3c2c, #2d5a3f);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: scale(0.98);
+        }
+        
+        .message {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .loading {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .about-section {
+            margin-top: 2rem;
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem;
+        }
+        
+        .about-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: #1a3c2c;
+            margin-bottom: 1rem;
+        }
+        
+        .about-text {
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        .about-quote {
+            font-style: italic;
+            color: #8B4513;
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #FFD700;
+        }
+        
+        .contact-section {
+            margin-top: 1.5rem;
+            background: #1a3c2c;
+            border-radius: 24px;
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+        }
+        
+        .contact-section a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        
+        .footer {
+            background: #1a1a1a;
+            color: #999;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .form-card { padding: 1.5rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="top-banner">📍 Oke Ayo Osu, Osun State | ✝️ Member Portal | 🙏 Mark Your Attendance</div>
+    <div class="top-banner">
+        📍 Oke Ayo Osu, Osun State | ✝️ The House of Prayer | 🙏 Register Your Attendance
+    </div>
+    
     <div class="main-header">
         <div class="logo">⛪</div>
         <h1>THE SACRED CHERUBIM & SERAPHIM CHURCH OF NIGERIA</h1>
@@ -67,445 +217,155 @@
     </div>
     
     <div class="container">
-        <!-- Login Section -->
-        <div id="authSection" class="auth-container">
-            <div id="loginForm" class="auth-card">
-                <h2 class="auth-title">🔐 Member Login</h2>
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="loginPhone" placeholder="Enter your registered phone number">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="loginPassword" placeholder="Enter your password">
-                </div>
-                <button class="btn-primary" onclick="loginUser()">Login</button>
-                <div class="switch-auth">
-                    Don't have an account? <a onclick="showRegister()">Register here</a>
-                </div>
-                <div id="loginMessage"></div>
-            </div>
+        <div class="form-card">
+            <h3 class="form-title">📋 Register Your Attendance</h3>
             
-            <!-- Register Section -->
-            <div id="registerForm" class="auth-card hidden">
-                <h2 class="auth-title">📝 Create Account</h2>
-                <div class="form-group"><label>First Name</label><input type="text" id="regFirstName" placeholder="Enter first name"></div>
-                <div class="form-group"><label>Second Name</label><input type="text" id="regSecondName" placeholder="Enter second name"></div>
-                <div class="form-group"><label>Surname</label><input type="text" id="regSurname" placeholder="Enter surname"></div>
-                <div class="form-group"><label>Sex</label><select id="regSex"><option value="">Select</option><option value="Male">Male</option><option value="Female">Female</option></select></div>
-                <div class="form-group"><label>Phone Number (This will be your username)</label><input type="tel" id="regPhone" placeholder="e.g., 08012345678"></div>
-                <div class="form-group"><label>Create Password</label><input type="password" id="regPassword" placeholder="Create a password (min 4 characters)"></div>
-                <button class="btn-primary" onclick="registerUser()">Create Account</button>
-                <div class="switch-auth">Already have an account? <a onclick="showLogin()">Login here</a></div>
-                <div id="registerMessage"></div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label>First Name *</label>
+                    <input type="text" id="firstName" required placeholder="Enter your first name">
+                </div>
+                <div class="form-group">
+                    <label>Second Name *</label>
+                    <input type="text" id="secondName" required placeholder="Enter your second name">
+                </div>
+                <div class="form-group">
+                    <label>Surname *</label>
+                    <input type="text" id="surname" required placeholder="Enter your surname">
+                </div>
+                <div class="form-group">
+                    <label>Sex *</label>
+                    <select id="sex" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="phone" required placeholder="e.g., 08012345678">
+                </div>
+                <div class="form-group">
+                    <label>Select Event *</label>
+                    <select id="eventType" required>
+                        <option value="">Select Event</option>
+                        <option value="Sunday Service">🕊️ Sunday Service</option>
+                        <option value="Holy Ghost Summit 2026">🔥 Holy Ghost Summit 2026</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn">✍️ Submit Registration</button>
+            </form>
+            <div id="messageDiv"></div>
+        </div>
+        
+        <div class="about-section">
+            <h3>📖 About Us</h3>
+            <div class="about-text">
+                <p>Welcome to The Sacred Cherubim & Seraphim Church of Nigeria, Oke Ayo Osu Model Parish, a place of worship, prayer, holiness, and divine encounter. We are a Christ-centered church committed to proclaiming the Gospel of Jesus Christ, nurturing spiritual growth, and leading souls into a deeper relationship with God.</p>
+                <p style="margin-top: 1rem;">Guided by the power of the Holy Spirit and the teachings of the Holy Bible, we uphold the values of faith, righteousness, love, and service. Through fervent prayers, inspiring worship, biblical teachings, and community outreach, we strive to bring hope, healing, and transformation to individuals, families, and society.</p>
+                <p style="margin-top: 1rem;">Our mission is to raise disciples of Christ, win souls for God's Kingdom, and create an atmosphere where everyone can experience God's presence and power. We welcome all people regardless of background to join us in worship as one family united in faith and love.</p>
+                <div class="about-quote">
+                    "A place where prayers are answered, lives are transformed, and God is glorified."
+                </div>
             </div>
         </div>
         
-        <!-- Dashboard (After Login) -->
-        <div id="dashboardSection" class="hidden">
-            <div class="dashboard-header">
-                <div class="welcome-text">
-                    <h3>Welcome, <span id="userName">Member</span>! 🎉</h3>
-                    <p>Mark your attendance for upcoming services</p>
-                </div>
-                <button class="logout-btn" onclick="logoutUser()">🚪 Logout</button>
-            </div>
-            
-            <div class="stats-dashboard">
-                <div class="stat-card"><div class="stat-number" id="sundayCount">0</div><div class="stat-label">Sunday Services</div></div>
-                <div class="stat-card"><div class="stat-number" id="summitCount">0</div><div class="stat-label">Holy Ghost Summit</div></div>
-                <div class="stat-card"><div class="stat-number" id="totalCount">0</div><div class="stat-label">Total Attendance</div></div>
-            </div>
-            
-            <div class="attendance-cards">
-                <div class="attendance-card">
-                    <div class="card-icon">🕊️</div>
-                    <div class="card-title">Sunday Service</div>
-                    <div class="card-date">Every Sunday | 9:00 AM - 2:00 PM</div>
-                    <div id="sundayStatus" class="attendance-status status-absent">Not Marked Yet</div>
-                    <button id="sundayBtn" class="mark-btn" onclick="markAttendance('sunday')">✅ Mark Attendance for Sunday Service</button>
-                </div>
-                
-                <div class="attendance-card">
-                    <div class="card-icon">🔥</div>
-                    <div class="card-title">Holy Ghost Summit 2026</div>
-                    <div class="card-date">Special Event | Coming Soon</div>
-                    <div id="summitStatus" class="attendance-status status-absent">Not Registered Yet</div>
-                    <button id="summitBtn" class="mark-btn" onclick="markAttendance('summit')">🔥 Register for Holy Ghost Summit</button>
-                </div>
-            </div>
-            
-            <div class="history-section">
-                <h3>📊 My Attendance History</h3>
-                <div class="history-table">
-                    <table>
-                        <thead><tr><th>Date</th><th>Event</th><th>Status</th></tr></thead>
-                        <tbody id="historyBody"><tr><td colspan="3" style="text-align:center;">No records yet</td></tr></tbody>
-                    </table>
-                </div>
-            </div>
+        <div class="contact-section">
+            <h3>📞 Contact Us</h3>
+            <p>📞 08162632204, 07035545877</p>
+            <p>📧 csokeayomodelparishosuosunstat@gmail.com</p>
+            <p>📍 Oke Ayo Osu, Osun State, Nigeria</p>
         </div>
     </div>
     
     <div class="footer">
         <p>THE SACRED CHERUBIM & SERAPHIM CHURCH OF NIGERIA - Oke Ayo Osu Model Parish</p>
-        <p>📞 08162632204, 07035545877 | 📧 csokeayomodelparishosuosunstat@gmail.com</p>
+        <p>© 2024 All Rights Reserved | Powered by Faith</p>
     </div>
 
     <script>
-        // ============ DATA STORAGE (Works on all devices) ============
-        // All data is stored in localStorage which works on any device
-        // To access data across devices, use the Export/Import feature below
+        // ============================================
+        // YOUR GOOGLE APPS SCRIPT URL (UPDATED)
+        // ============================================
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxADmyPu88n_En5gfzQL_mnLa2EvblHGXRLw9Y-X1YpikmR94CJfctwRIc1Sz3rv3BG/exec";
         
-        let currentUser = null;
-        
-        // Get users from storage
-        function getUsers() {
-            const users = localStorage.getItem('csoc_users');
-            return users ? JSON.parse(users) : [];
+        const form = document.getElementById('registerForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const messageDiv = document.getElementById('messageDiv');
+
+        function showMessage(msg, type) {
+            messageDiv.innerHTML = `<div class="message ${type}">${msg}</div>`;
+            setTimeout(() => {
+                if (messageDiv.innerHTML.includes(msg)) {
+                    messageDiv.innerHTML = "";
+                }
+            }, 5000);
         }
-        
-        function saveUsers(users) {
-            localStorage.setItem('csoc_users', JSON.stringify(users));
+
+        async function submitToGoogleSheets(formData) {
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                return true;
+            } catch (error) {
+                console.error('Submission error:', error);
+                return false;
+            }
         }
-        
-        // Get attendance records
-        function getAttendance() {
-            const attendance = localStorage.getItem('csoc_attendance');
-            return attendance ? JSON.parse(attendance) : [];
-        }
-        
-        function saveAttendance(attendance) {
-            localStorage.setItem('csoc_attendance', JSON.stringify(attendance));
-        }
-        
-        // Register new user
-        function registerUser() {
-            const firstName = document.getElementById('regFirstName').value.trim();
-            const secondName = document.getElementById('regSecondName').value.trim();
-            const surname = document.getElementById('regSurname').value.trim();
-            const sex = document.getElementById('regSex').value;
-            const phone = document.getElementById('regPhone').value.trim();
-            const password = document.getElementById('regPassword').value;
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
             
-            // Validation
-            if (!firstName || !secondName || !surname || !sex || !phone || !password) {
-                showMessage('registerMessage', '❌ Please fill in all fields', 'error');
+            const firstName = document.getElementById('firstName').value.trim();
+            const secondName = document.getElementById('secondName').value.trim();
+            const surname = document.getElementById('surname').value.trim();
+            const sex = document.getElementById('sex').value;
+            const phone = document.getElementById('phone').value.trim();
+            const eventType = document.getElementById('eventType').value;
+
+            if (!firstName || !secondName || !surname || !sex || !phone || !eventType) {
+                showMessage('❌ Please fill in all fields', 'error');
                 return;
             }
-            
-            if (password.length < 4) {
-                showMessage('registerMessage', '❌ Password must be at least 4 characters', 'error');
-                return;
-            }
-            
+
             if (phone.length < 8) {
-                showMessage('registerMessage', '❌ Please enter a valid phone number', 'error');
+                showMessage('❌ Please enter a valid phone number', 'error');
                 return;
             }
-            
-            const users = getUsers();
-            
-            // Check if phone already exists
-            if (users.find(u => u.phone === phone)) {
-                showMessage('registerMessage', '❌ This phone number is already registered. Please login instead.', 'error');
-                return;
-            }
-            
-            // Create new user
-            const newUser = {
-                id: Date.now(),
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Submitting...';
+            showMessage('📤 Sending registration to church database...', 'loading');
+
+            const formData = {
                 firstName: firstName,
                 secondName: secondName,
                 surname: surname,
                 sex: sex,
                 phone: phone,
-                password: password,
+                eventType: eventType,
+                timestamp: new Date().toISOString(),
                 registeredAt: new Date().toLocaleString()
             };
+
+            const success = await submitToGoogleSheets(formData);
             
-            users.push(newUser);
-            saveUsers(users);
-            
-            // Clear form
-            document.getElementById('regFirstName').value = '';
-            document.getElementById('regSecondName').value = '';
-            document.getElementById('regSurname').value = '';
-            document.getElementById('regSex').value = '';
-            document.getElementById('regPhone').value = '';
-            document.getElementById('regPassword').value = '';
-            
-            showMessage('registerMessage', '✅ Account created successfully! Please login now.', 'success');
-            
-            // Switch to login after 2 seconds
-            setTimeout(() => {
-                showLogin();
-            }, 2000);
-        }
-        
-        // Login user
-        function loginUser() {
-            const phone = document.getElementById('loginPhone').value.trim();
-            const password = document.getElementById('loginPassword').value;
-            
-            if (!phone || !password) {
-                showMessage('loginMessage', '❌ Please enter phone number and password', 'error');
-                return;
-            }
-            
-            const users = getUsers();
-            const user = users.find(u => u.phone === phone && u.password === password);
-            
-            if (!user) {
-                showMessage('loginMessage', '❌ Invalid phone number or password. Please check and try again.', 'error');
-                return;
-            }
-            
-            // Login successful
-            currentUser = user;
-            localStorage.setItem('csoc_current_user', JSON.stringify(currentUser));
-            
-            // Clear login form
-            document.getElementById('loginPhone').value = '';
-            document.getElementById('loginPassword').value = '';
-            document.getElementById('loginMessage').innerHTML = '';
-            
-            // Show dashboard
-            document.getElementById('authSection').classList.add('hidden');
-            document.getElementById('dashboardSection').classList.remove('hidden');
-            document.getElementById('userName').innerHTML = `${user.firstName} ${user.surname}`;
-            
-            // Load user data
-            loadUserDashboard();
-            
-            // Show success message in dashboard
-            showDashboardMessage('✅ Login successful! Welcome back!', 'success');
-        }
-        
-        function showDashboardMessage(msg, type) {
-            const historySection = document.querySelector('.history-section');
-            const oldMsg = document.getElementById('tempMsg');
-            if (oldMsg) oldMsg.remove();
-            const msgDiv = document.createElement('div');
-            msgDiv.id = 'tempMsg';
-            msgDiv.className = `message ${type}`;
-            msgDiv.style.marginBottom = '1rem';
-            msgDiv.innerHTML = msg;
-            historySection.parentNode.insertBefore(msgDiv, historySection);
-            setTimeout(() => {
-                if (msgDiv) msgDiv.remove();
-            }, 3000);
-        }
-        
-        function loadUserDashboard() {
-            if (!currentUser) return;
-            
-            const attendance = getAttendance();
-            const userAttendance = attendance.filter(a => a.userId === currentUser.id);
-            
-            const sundayRecords = userAttendance.filter(a => a.eventId === 'sunday');
-            const summitRecords = userAttendance.filter(a => a.eventId === 'summit');
-            
-            document.getElementById('sundayCount').textContent = sundayRecords.length;
-            document.getElementById('summitCount').textContent = summitRecords.length;
-            document.getElementById('totalCount').textContent = userAttendance.length;
-            
-            // Check if already marked for this Sunday
-            const thisSunday = getThisSunday();
-            const markedThisSunday = sundayRecords.find(r => r.date === thisSunday);
-            const sundayBtn = document.getElementById('sundayBtn');
-            const sundayStatus = document.getElementById('sundayStatus');
-            
-            if (markedThisSunday) {
-                sundayBtn.disabled = true;
-                sundayBtn.innerHTML = '✅ Already Marked for This Week';
-                sundayStatus.innerHTML = 'Marked Present ✓';
-                sundayStatus.className = 'attendance-status status-present';
+            if (success) {
+                showMessage(`✅ Registration Successful for ${eventType}! Welcome to CSOC Oke Ayo Osu Parish. God bless you!`, 'success');
+                form.reset();
             } else {
-                sundayBtn.disabled = false;
-                sundayBtn.innerHTML = '✅ Mark Attendance for Sunday Service';
-                sundayStatus.innerHTML = 'Not Marked Yet';
-                sundayStatus.className = 'attendance-status status-absent';
+                showMessage('❌ Registration Failed. Please check your connection and try again.', 'error');
             }
             
-            // Check if registered for Summit
-            const summitRegistered = summitRecords.length > 0;
-            const summitBtn = document.getElementById('summitBtn');
-            const summitStatus = document.getElementById('summitStatus');
-            
-            if (summitRegistered) {
-                summitBtn.disabled = true;
-                summitBtn.innerHTML = '✅ Already Registered for Summit';
-                summitStatus.innerHTML = 'Registered ✓';
-                summitStatus.className = 'attendance-status status-present';
-            } else {
-                summitBtn.disabled = false;
-                summitBtn.innerHTML = '🔥 Register for Holy Ghost Summit';
-                summitStatus.innerHTML = 'Not Registered Yet';
-                summitStatus.className = 'attendance-status status-absent';
-            }
-            
-            // History table
-            const allRecords = [...sundayRecords, ...summitRecords];
-            allRecords.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-            
-            const historyBody = document.getElementById('historyBody');
-            if (allRecords.length === 0) {
-                historyBody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No attendance records yet</td></tr>';
-            } else {
-                historyBody.innerHTML = allRecords.map(record => `
-                    <tr>
-                        <td>${record.date}</td>
-                        <td>${record.eventName}</td>
-                        <td><span class="status-present">✓ Present</span></td>
-                    </tr>
-                `).join('');
-            }
-        }
-        
-        function getThisSunday() {
-            const today = new Date();
-            const day = today.getDay();
-            const diff = day === 0 ? 0 : 7 - day;
-            const sunday = new Date(today);
-            sunday.setDate(today.getDate() + diff);
-            return sunday.toISOString().split('T')[0];
-        }
-        
-        function markAttendance(eventType) {
-            if (!currentUser) {
-                alert('Please login first');
-                return;
-            }
-            
-            const attendance = getAttendance();
-            const eventNames = { sunday: 'Sunday Service', summit: 'Holy Ghost Summit 2026' };
-            const date = eventType === 'sunday' ? getThisSunday() : new Date().toISOString().split('T')[0];
-            
-            // Check if already marked
-            if (eventType === 'sunday') {
-                const alreadyMarked = attendance.find(a => a.userId === currentUser.id && a.eventId === 'sunday' && a.date === date);
-                if (alreadyMarked) {
-                    alert('❌ You have already marked attendance for this Sunday service!');
-                    return;
-                }
-            } else {
-                const alreadyMarked = attendance.find(a => a.userId === currentUser.id && a.eventId === 'summit');
-                if (alreadyMarked) {
-                    alert('❌ You have already registered for Holy Ghost Summit 2026!');
-                    return;
-                }
-            }
-            
-            // Create new attendance record
-            const newRecord = {
-                id: Date.now(),
-                userId: currentUser.id,
-                eventId: eventType,
-                eventName: eventNames[eventType],
-                date: date,
-                timestamp: new Date().toISOString(),
-                userName: `${currentUser.firstName} ${currentUser.surname}`,
-                userPhone: currentUser.phone
-            };
-            
-            attendance.push(newRecord);
-            saveAttendance(attendance);
-            
-            alert(`✅ ${eventType === 'sunday' ? 'Attendance marked for Sunday Service' : 'Registration confirmed for Holy Ghost Summit 2026'}! Thank you.`);
-            
-            loadUserDashboard();
-        }
-        
-        function logoutUser() {
-            currentUser = null;
-            localStorage.removeItem('csoc_current_user');
-            document.getElementById('authSection').classList.remove('hidden');
-            document.getElementById('dashboardSection').classList.add('hidden');
-            showLogin();
-        }
-        
-        function showMessage(elementId, message, type) {
-            const element = document.getElementById(elementId);
-            element.innerHTML = `<div class="message ${type}">${message}</div>`;
-            setTimeout(() => {
-                if (element.innerHTML.includes(message)) {
-                    element.innerHTML = '';
-                }
-            }, 4000);
-        }
-        
-        function showRegister() {
-            document.getElementById('loginForm').classList.add('hidden');
-            document.getElementById('registerForm').classList.remove('hidden');
-            document.getElementById('loginMessage').innerHTML = '';
-            document.getElementById('registerMessage').innerHTML = '';
-        }
-        
-        function showLogin() {
-            document.getElementById('registerForm').classList.add('hidden');
-            document.getElementById('loginForm').classList.remove('hidden');
-            document.getElementById('loginMessage').innerHTML = '';
-            document.getElementById('registerMessage').innerHTML = '';
-        }
-        
-        // Check for existing session
-        function checkSession() {
-            const savedUser = localStorage.getItem('csoc_current_user');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                // Verify user still exists
-                const users = getUsers();
-                const validUser = users.find(u => u.id === currentUser.id);
-                if (validUser) {
-                    currentUser = validUser;
-                    document.getElementById('authSection').classList.add('hidden');
-                    document.getElementById('dashboardSection').classList.remove('hidden');
-                    document.getElementById('userName').innerHTML = `${currentUser.firstName} ${currentUser.surname}`;
-                    loadUserDashboard();
-                } else {
-                    localStorage.removeItem('csoc_current_user');
-                }
-            }
-        }
-        
-        // ============ ADMIN ACCESS (Secret) ============
-        // To see all records, open browser console (F12) and type: viewAllRecords()
-        window.viewAllRecords = function() {
-            const users = getUsers();
-            const attendance = getAttendance();
-            console.log('=== USERS ===');
-            console.table(users);
-            console.log('=== ATTENDANCE RECORDS ===');
-            console.table(attendance);
-            alert(`Total Users: ${users.length}\nSunday Service Records: ${attendance.filter(a => a.eventId === 'sunday').length}\nHoly Ghost Summit Records: ${attendance.filter(a => a.eventId === 'summit').length}\n\nCheck console for full details (F12)`);
-        };
-        
-        // Export all data to CSV
-        window.exportData = function() {
-            const users = getUsers();
-            const attendance = getAttendance();
-            
-            let csv = "Event Type,Date,Member Name,Phone Number,Timestamp\n";
-            attendance.forEach(a => {
-                csv += `"${a.eventName}","${a.date}","${a.userName}","${a.userPhone}","${a.timestamp}"\n`;
-            });
-            
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `csoc_attendance_${new Date().toISOString().split('T')[0]}.csv`;
-            link.click();
-            alert('CSV file downloaded!');
-        };
-        
-        // Admin instructions in console
-        console.log('🔐 ADMIN ACCESS:');
-        console.log('   - Type "viewAllRecords()" to see all users and attendance');
-        console.log('   - Type "exportData()" to download CSV of all records');
-        
-        // Initialize
-        checkSession();
+            submitBtn.disabled = false;
+            submitBtn.textContent = '✍️ Submit Registration';
+        });
     </script>
 </body>
 </html>
